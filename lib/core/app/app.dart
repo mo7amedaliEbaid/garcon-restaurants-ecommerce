@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:garcon/application/cubits/connectivity_cubit.dart';
-
+import 'package:garcon/application/application.dart';
 import '../core.dart';
 
 class MyApp extends StatelessWidget {

@@ -1,17 +1,8 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+part 'connectivity_state.dart';
 
-// Custom states
-abstract class ConnectivityState {}
-
-class Connected extends ConnectivityState {}
-
-class Disconnected extends ConnectivityState {
-  final VoidCallback onTryAgain;
-
-  Disconnected({required this.onTryAgain});
-}
 
 class ConnectivityCubit extends Cubit<ConnectivityState> {
   final Connectivity _connectivity = Connectivity();

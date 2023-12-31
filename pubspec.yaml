@@ -39,6 +39,7 @@ dependencies:
   cached_network_image:
   connectivity_plus:
   flutter_bloc:
+  firebase_core:
 
 dev_dependencies:
   flutter_test:
