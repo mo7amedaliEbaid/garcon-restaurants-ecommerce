@@ -40,6 +40,10 @@ dependencies:
   connectivity_plus:
   flutter_bloc:
   firebase_core:
+  cloud_firestore:
+  firebase_auth:
+  dots_indicator:
+  equatable: 
 
 dev_dependencies:
   flutter_test:

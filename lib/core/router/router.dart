@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../presentation/screens/screens.dart';
+import '../core.dart';
 
 sealed class AppRouter {
   static const String splash = '/';
@@ -19,7 +20,7 @@ sealed class AppRouter {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
 
       default:
-        throw Exception('Route not found!');
+        throw const RouteException('Route not found!');
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garcon/application/application.dart';
+import 'package:garcon/repositories/repositories.dart';
 import '../core.dart';
 
 class MyApp extends StatelessWidget {
@@ -9,7 +10,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => ConnectivityCubit())],
+      providers: [
+        BlocProvider(create: (context) => ConnectivityCubit()),
+        BlocProvider(
+            lazy: false,
+            create: (context) =>
+                RestaurantsBloc(restaurantsRepository: RestaurantsRepo())
+                  ..add(LoadRestaurants()))
+      ],
       child: MaterialApp(
         title: 'Garcon',
         debugShowCheckedModeBanner: false,
