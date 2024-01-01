@@ -65,7 +65,7 @@ class _RootScreenState extends State<RootScreen> {
             ),
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(AppAssets.account),
+            icon: SvgPicture.asset(AppAssets.settings),
             label: 'Settings',
             activeIcon: SvgPicture.asset(
               AppAssets.settings,

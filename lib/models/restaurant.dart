@@ -5,12 +5,16 @@ class Restaurant extends Equatable {
   final String id;
   final String name;
   final String image;
+  final String views;
+  final String reviews;
   final List<dynamic> tags;
 
   const Restaurant({
     required this.id,
     required this.name,
     required this.image,
+    required this.views,
+    required this.reviews,
     required this.tags,
   });
 
@@ -19,6 +23,8 @@ class Restaurant extends Equatable {
       name: snap['name'],
       id: snap['id'],
       image: snap['image'],
+      views: snap['views'],
+      reviews: snap['reviews'],
       tags: snap['tags'],
     );
     return restaurant;
@@ -29,6 +35,8 @@ class Restaurant extends Equatable {
         name,
         id,
         image,
+        views,
+        reviews,
         tags,
       ];
 }
