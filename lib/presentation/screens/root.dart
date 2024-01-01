@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:garcon/configs/app_typography.dart';
 import 'package:garcon/core/constants/assets.dart';
 import 'package:garcon/core/constants/colors.dart';
-import 'package:garcon/presentation/screens/screens.dart';
+import 'package:garcon/presentation/screens.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});

@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
 import 'package:garcon/application/application.dart';
-import 'package:garcon/presentation/widgets/widgets.dart';
+import 'package:garcon/presentation/widgets.dart';
 
 class AdsScreen extends StatefulWidget {
   const AdsScreen({super.key});

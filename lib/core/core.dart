@@ -21,3 +21,6 @@ export 'error/exceptions.dart';
 
 //extensions
 export 'extensions/extensions.dart';
+
+//observer
+export 'observer/bloc_observer.dart';

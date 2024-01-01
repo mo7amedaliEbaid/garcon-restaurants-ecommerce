@@ -21,4 +21,38 @@ class RestaurantsRepo extends BaseRestaurantsRepository {
       }).toList();
     });
   }
+
+  //Instead Of filtering restaurants from firestore directly i decided to
+  // filter the list that already retrieved.
+  @override
+  List<Restaurant> filterRestaurantsByTag(
+      List<Restaurant> restaurants, String tag) {
+    return restaurants
+        .where((restaurant) => restaurant.tags.contains(tag))
+        .toList();
+  }
+
+// If you want to filter restaurants from firestore directly.
+
+/*  @override
+  Stream<List<Restaurant>> filterRestaurantsByTag(String tag) {
+    return _firebaseFirestore
+        .collection('restaurants')
+        .where('tags', arrayContains: tag)
+        .snapshots()
+        .map((snapshot) {
+      return snapshot.docs.map((doc) {
+        return Restaurant.fromSnapShot(doc);
+      }).toList();
+    });
+  }*/
+
+  @override
+  Stream<List<Tag>> getAllTags() {
+    return _firebaseFirestore.collection('tags').snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) {
+        return Tag.fromSnapShot(doc);
+      }).toList();
+    });
+  }
 }

@@ -16,7 +16,14 @@ class MyApp extends StatelessWidget {
             lazy: false,
             create: (context) =>
                 RestaurantsBloc(restaurantsRepository: RestaurantsRepo())
-                  ..add(LoadRestaurants()))
+                  ..add(LoadRestaurants())),
+        BlocProvider(
+            create: (context) => FilterCubit(repository: RestaurantsRepo())),
+        BlocProvider(
+            lazy: false,
+            create: (context) =>
+                TagsBloc(restaurantsRepository: RestaurantsRepo())
+                  ..add(LoadTags())),
       ],
       child: MaterialApp(
         title: 'Garcon',

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
 import 'package:garcon/models/models.dart';
-import 'package:garcon/presentation/widgets/widgets.dart';
+import 'package:garcon/presentation/widgets.dart';
 
 Widget horizontalRestaurantItem(Restaurant restaurant) {
   return Column(

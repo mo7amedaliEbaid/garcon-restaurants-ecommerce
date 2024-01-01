@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../presentation/screens/screens.dart';
+import '../../presentation/screens.dart';
 import '../core.dart';
 
 sealed class AppRouter {

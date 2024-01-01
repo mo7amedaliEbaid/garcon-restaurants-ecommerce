@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garcon/application/application.dart';
 import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
-import 'package:garcon/presentation/widgets/widgets.dart';
+import 'package:garcon/presentation/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
