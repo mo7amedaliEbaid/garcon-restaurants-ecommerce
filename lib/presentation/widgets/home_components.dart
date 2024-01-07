@@ -1,18 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:garcon/presentation/widgets.dart';
 
 import '../../configs/configs.dart';
 import '../../core/core.dart';
 
-PreferredSizeWidget homeAppBar() {
+PreferredSizeWidget homeAppBar(BuildContext context) {
   return PreferredSize(
     preferredSize: Size(double.infinity, AppDimensions.normalize(35)),
     child: Padding(
       padding: EdgeInsets.only(
-          top: AppDimensions.normalize(23),
-          left: AppDimensions.normalize(8),
-          right: AppDimensions.normalize(8)),
+        top: AppDimensions.normalize(23),
+        left: AppDimensions.normalize(8),
+        right: AppDimensions.normalize(8),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -23,7 +25,12 @@ PreferredSizeWidget homeAppBar() {
           ),
           Row(
             children: [
-              SvgPicture.asset(AppAssets.filter),
+              GestureDetector(
+                onTap: () async {
+                  await filterBottomSheet(context);
+                },
+                child: SvgPicture.asset(AppAssets.filter),
+              ),
               Space.xf(.7),
               SvgPicture.asset(AppAssets.search),
             ],
