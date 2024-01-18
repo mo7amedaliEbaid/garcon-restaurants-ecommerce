@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:garcon/application/application.dart';
 import 'package:garcon/core/core.dart';
+import 'package:garcon/presentation/widgets.dart';
 
 import '../../configs/configs.dart';
 
 Future<void> filterBottomSheet(BuildContext context) async {
+  bool isBooking = true;
   return showModalBottomSheet(
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(AppDimensions.normalize(10)),
+      borderRadius: BorderRadius.circular(
+        AppDimensions.normalize(10),
+      ),
     ),
     clipBehavior: Clip.hardEdge,
     isDismissible: false,
@@ -53,10 +59,69 @@ Future<void> filterBottomSheet(BuildContext context) async {
               ),
             ),
             Padding(
-              padding: Space.hf(1.2),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Space.yf(), restaurantTypeText()],
+              padding: Space.hf(1.7),
+              child: StatefulBuilder(
+                builder: (context, setState) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Space.yf(2),
+                      filterSheetText("Restaurant Type"),
+                      Space.yf(1.2),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          customElevatedButton(
+                              width: AppDimensions.normalize(58),
+                              height: AppDimensions.normalize(18),
+                              color: AppColors.deepRed,
+                              borderRadius: AppDimensions.normalize(4),
+                              text: "Booking",
+                              textStyle:
+                              AppText.h3b!.copyWith(color: Colors.white),
+                              onPressed: () {
+                                setState(() {
+                                  isBooking = true;
+                                });
+                              }),
+                          customOutlinedButton(
+                              width: AppDimensions.normalize(58),
+                              height: AppDimensions.normalize(18),
+                              borderColor: AppColors.deepRed,
+                              borderRadius: AppDimensions.normalize(4),
+                              text: "Pickup",
+                              textStyle: AppText.h3b!
+                                  .copyWith(color: AppColors.deepRed),
+                              onPressed: () {
+                                setState(() {
+                                  isBooking = false;
+                                });
+                              })
+                        ],
+                      ),
+                      Space.yf(2.2),
+                      filterSheetText("Cuisine"),
+                      Space.yf(),
+                      BlocBuilder<TagsBloc, TagsState>(
+                        builder: (context, state) {
+                          if(state is TagsLoaded && state.tags.isNotEmpty){
+                            return SizedBox(
+                              height: AppDimensions.normalize(80),
+                              child: ListView.builder(
+                                  itemCount:state.tags.length,
+                                  itemBuilder: (context, index) {
+                                    return Text(state.tags[index].name);
+                                  }),
+                            );
+                          }else{
+                            return const SizedBox.shrink();
+                          }
+
+                        },
+                      )
+                    ],
+                  );
+                },
               ),
             )
           ],
@@ -66,9 +131,9 @@ Future<void> filterBottomSheet(BuildContext context) async {
   );
 }
 
-Widget restaurantTypeText() {
+Widget filterSheetText(String filterSheetText) {
   return Text(
-    "Restaurant Type",
+    filterSheetText,
     style: AppText.h2b,
   );
 }

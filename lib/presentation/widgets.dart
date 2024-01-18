@@ -1,4 +1,4 @@
-export 'widgets/custom_elevated_button.dart';
+export 'widgets/custom_buttons.dart';
 export 'widgets/horizontal_restaurant_item.dart';
 export 'widgets/vertical_restaurant_item.dart';
 export 'widgets/home_components.dart';
