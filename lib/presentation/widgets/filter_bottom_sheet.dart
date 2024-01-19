@@ -78,7 +78,7 @@ Future<void> filterBottomSheet(BuildContext context) async {
                               borderRadius: AppDimensions.normalize(4),
                               text: "Booking",
                               textStyle:
-                              AppText.h3b!.copyWith(color: Colors.white),
+                                  AppText.h3b!.copyWith(color: Colors.white),
                               onPressed: () {
                                 setState(() {
                                   isBooking = true;
@@ -104,19 +104,23 @@ Future<void> filterBottomSheet(BuildContext context) async {
                       Space.yf(),
                       BlocBuilder<TagsBloc, TagsState>(
                         builder: (context, state) {
-                          if(state is TagsLoaded && state.tags.isNotEmpty){
+                          if (state is TagsLoaded && state.tags.isNotEmpty) {
                             return SizedBox(
-                              height: AppDimensions.normalize(80),
-                              child: ListView.builder(
-                                  itemCount:state.tags.length,
-                                  itemBuilder: (context, index) {
-                                    return Text(state.tags[index].name);
-                                  }),
+                              height: AppDimensions.normalize(110),
+                              child: ListView.separated(
+                                itemCount: state.tags.length,
+                                itemBuilder: (context, index) {
+                                  return filterItem(tag: state.tags[index]);
+                                },
+                                separatorBuilder:
+                                    (BuildContext context, int index) {
+                                  return Space.yf();
+                                },
+                              ),
                             );
-                          }else{
+                          } else {
                             return const SizedBox.shrink();
                           }
-
                         },
                       )
                     ],
@@ -128,12 +132,5 @@ Future<void> filterBottomSheet(BuildContext context) async {
         ),
       );
     },
-  );
-}
-
-Widget filterSheetText(String filterSheetText) {
-  return Text(
-    filterSheetText,
-    style: AppText.h2b,
   );
 }

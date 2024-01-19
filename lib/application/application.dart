@@ -8,3 +8,4 @@ export 'blocs/tags/tags_bloc.dart';
 //cubits
 export 'cubits/connectivity/connectivity_cubit.dart';
 export 'cubits/filter/filter_cubit.dart';
+export 'cubits/select_tag/select_tag_cubit.dart';

@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 TagsBloc(restaurantsRepository: RestaurantsRepo())
                   ..add(LoadTags())),
+        BlocProvider(create: (context) => SelectTagCubit()),
       ],
       child: MaterialApp(
         title: 'Garcon',

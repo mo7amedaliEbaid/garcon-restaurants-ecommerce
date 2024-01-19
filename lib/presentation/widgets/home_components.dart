@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:garcon/application/application.dart';
 import 'package:garcon/presentation/widgets.dart';
 
 import '../../configs/configs.dart';
@@ -69,12 +71,18 @@ Widget loadingState() {
 }
 
 Widget restaurantsTitle() {
-  return Padding(
-    padding: Space.hf(1.2),
-    child: Text(
-      "Restaurants",
-      style: AppText.h2b,
-    ),
+  return BlocBuilder<SelectTagCubit, SelectTagState>(
+    builder: (context, state) {
+      return Padding(
+        padding: Space.hf(1.2),
+        child: Text(
+          (state.selectedTag == null)
+              ? "Restaurants"
+              : state.selectedTag!.name.capitalize(),
+          style: AppText.h2b,
+        ),
+      );
+    },
   );
 }
 

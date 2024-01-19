@@ -32,13 +32,14 @@ Widget verticalRestaurantItem(Restaurant restaurant) {
               children: [
                 Text(
                   restaurant.name.capitalize(),
-                  style: AppText.h2b?.copyWith(color: Colors.white),
+                  style: AppText.h2b?.copyWith(color: Colors.white,backgroundColor:Colors.grey ),
                 ),
+                Space.yf(.2),
                 restaurantTagsRow(
                     tags: restaurant.tags,
                     svgColor: Colors.white,
                     textStyle:
-                        AppText.b1!.copyWith(color: Colors.white, height: 1))
+                        AppText.b1b!.copyWith(color: Colors.white, height: 1,))
               ],
             ))
       ],
