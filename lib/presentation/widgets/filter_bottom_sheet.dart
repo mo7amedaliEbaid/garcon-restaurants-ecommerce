@@ -71,32 +71,61 @@ Future<void> filterBottomSheet(BuildContext context) async {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          customElevatedButton(
-                              width: AppDimensions.normalize(58),
-                              height: AppDimensions.normalize(18),
-                              color: AppColors.deepRed,
-                              borderRadius: AppDimensions.normalize(4),
-                              text: "Booking",
-                              textStyle:
-                                  AppText.h3b!.copyWith(color: Colors.white),
-                              onPressed: () {
-                                setState(() {
-                                  isBooking = true;
-                                });
-                              }),
-                          customOutlinedButton(
-                              width: AppDimensions.normalize(58),
-                              height: AppDimensions.normalize(18),
-                              borderColor: AppColors.deepRed,
-                              borderRadius: AppDimensions.normalize(4),
-                              text: "Pickup",
-                              textStyle: AppText.h3b!
-                                  .copyWith(color: AppColors.deepRed),
-                              onPressed: () {
-                                setState(() {
-                                  isBooking = false;
-                                });
-                              })
+                          isBooking
+                              ? customElevatedButton(
+                                  width: AppDimensions.normalize(58),
+                                  height: AppDimensions.normalize(18),
+                                  color: AppColors.deepRed,
+                                  borderRadius: AppDimensions.normalize(4),
+                                  text: "Booking",
+                                  textStyle: AppText.h3b!
+                                      .copyWith(color: Colors.white),
+                                  onPressed: () {
+                                    setState(() {
+                                      isBooking = true;
+                                    });
+                                  })
+                              : customOutlinedButton(
+                                  width: AppDimensions.normalize(58),
+                                  height: AppDimensions.normalize(18),
+                                  borderColor: AppColors.deepRed,
+                                  borderRadius: AppDimensions.normalize(4),
+                                  text: "Booking",
+                                  textStyle: AppText.h3b!
+                                      .copyWith(color: AppColors.deepRed),
+                                  onPressed: () {
+                                    setState(() {
+                                      isBooking = true;
+                                    });
+                                  },
+                                ),
+                          isBooking
+                              ? customOutlinedButton(
+                                  width: AppDimensions.normalize(58),
+                                  height: AppDimensions.normalize(18),
+                                  borderColor: AppColors.deepRed,
+                                  borderRadius: AppDimensions.normalize(4),
+                                  text: "Pickup",
+                                  textStyle: AppText.h3b!
+                                      .copyWith(color: AppColors.deepRed),
+                                  onPressed: () {
+                                    setState(() {
+                                      isBooking = false;
+                                    });
+                                  })
+                              : customElevatedButton(
+                                  width: AppDimensions.normalize(58),
+                                  height: AppDimensions.normalize(18),
+                                  color: AppColors.deepRed,
+                                  borderRadius: AppDimensions.normalize(4),
+                                  text: "Pickup",
+                                  textStyle: AppText.h3b!
+                                      .copyWith(color: Colors.white),
+                                  onPressed: () {
+                                    setState(() {
+                                      isBooking = false;
+                                    });
+                                  })
                         ],
                       ),
                       Space.yf(2.2),
@@ -114,7 +143,7 @@ Future<void> filterBottomSheet(BuildContext context) async {
                                 },
                                 separatorBuilder:
                                     (BuildContext context, int index) {
-                                  return Space.yf();
+                                  return Space.yf(.5);
                                 },
                               ),
                             );
@@ -122,12 +151,14 @@ Future<void> filterBottomSheet(BuildContext context) async {
                             return const SizedBox.shrink();
                           }
                         },
-                      )
+                      ),
+                      Space.yf(1.3),
+                      bottomRow(context)
                     ],
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       );

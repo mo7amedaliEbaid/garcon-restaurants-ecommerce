@@ -4,12 +4,15 @@ import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/constants/colors.dart';
 
 Widget dotsIndicator(
-    {int? dotsIndex, required int dotsCount, required Color activeColor}) {
+    {int? dotsIndex,
+    required int dotsCount,
+    required Color activeColor,
+    required Color color}) {
   return DotsIndicator(
     dotsCount: dotsCount,
     position: dotsIndex!,
     decorator: DotsDecorator(
-        color: AppColors.darkRed.withOpacity(.2),
+        color: color,
         activeColor: activeColor,
         spacing: Space.hf(.1),
         //    activeSizes: List.filled(4, Size.fromRadius(AppDimensions.normalize(3))),

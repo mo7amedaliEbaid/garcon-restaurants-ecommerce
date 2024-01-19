@@ -5,3 +5,4 @@ export 'widgets/home_components.dart';
 export 'widgets/dots_indicator.dart';
 export 'widgets/filter_bottom_sheet.dart';
 export 'widgets/filter_components.dart';
+export 'widgets/custom_appbar.dart';

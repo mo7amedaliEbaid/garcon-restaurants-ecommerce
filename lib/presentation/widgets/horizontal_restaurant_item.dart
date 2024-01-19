@@ -4,20 +4,26 @@ import 'package:garcon/core/core.dart';
 import 'package:garcon/models/models.dart';
 import 'package:garcon/presentation/widgets.dart';
 
-Widget horizontalRestaurantItem(Restaurant restaurant) {
+Widget horizontalRestaurantItem(Restaurant restaurant, BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Container(
-          height: AppDimensions.normalize(68),
-          width: AppDimensions.normalize(94),
-          clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              AppDimensions.normalize(6),
+      GestureDetector(
+        onTap: () {
+          Navigator.of(context)
+              .pushNamed(AppRouter.restaurant, arguments: restaurant);
+        },
+        child: Container(
+            height: AppDimensions.normalize(68),
+            width: AppDimensions.normalize(94),
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                AppDimensions.normalize(6),
+              ),
             ),
-          ),
-          child: restaurantCachedNetworkImage(restaurant.image)),
+            child: restaurantCachedNetworkImage(restaurant.image)),
+      ),
       Space.yf(.3),
       Text(
         restaurant.name.capitalize(),

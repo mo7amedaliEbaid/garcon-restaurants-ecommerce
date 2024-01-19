@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: Space.hf(1.2),
                       itemBuilder: (context, index) {
                         return horizontalRestaurantItem(
-                            state.restaurants[index]);
+                            state.restaurants[index], context);
                       },
                       separatorBuilder: (BuildContext context, int index) {
                         return Space.xf();
@@ -65,8 +65,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     state.restaurants.isNotEmpty) {
                   return Column(
                     children: [
-                      ...state.restaurants.map(
-                          (restaurant) => verticalRestaurantItem(restaurant))
+                      ...state.restaurants.map((restaurant) =>
+                          verticalRestaurantItem(restaurant, context))
                     ],
                   );
                 } else if (state is RestaurantsLoaded &&
@@ -106,6 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     : 1,
                 dotsCount: 4,
                 activeColor: AppColors.darkRed.withOpacity(.7),
+                color: AppColors.darkRed.withOpacity(.2),
               ),
             ),
             Space.yf()

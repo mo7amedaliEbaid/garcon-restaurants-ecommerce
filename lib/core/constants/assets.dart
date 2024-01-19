@@ -19,4 +19,5 @@ sealed class AppAssets {
   static const String logoText = "assets/svg/logog.svg";
   static const String restaurant = "assets/svg/restaurant.svg";
   static const String search = "assets/svg/searchg.svg";
+  static const String arrowLeft = "assets/svg/arrow_left.svg";
 }
