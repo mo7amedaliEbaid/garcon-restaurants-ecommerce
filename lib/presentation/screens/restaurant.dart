@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:garcon/configs/configs.dart';
+import 'package:garcon/core/core.dart';
 import 'package:garcon/models/models.dart';
 import 'package:garcon/presentation/widgets.dart';
 
@@ -16,6 +18,7 @@ class RestaurantScreen extends StatefulWidget {
 class _RestaurantScreenState extends State<RestaurantScreen> {
   PageController _pageController = PageController();
   int selectedPageIndex = 1;
+  int selectedTapIndex = 0;
 
   @override
   void initState() {
@@ -26,10 +29,13 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(context: context, title: widget.restaurant.name),
+      appBar: customAppBar(
+        context: context,
+        title: widget.restaurant.name,
+      ),
       body: Column(
         children: [
-          Space.yf(1.3),
+          Space.yf(),
           Stack(
             children: [
               SizedBox(
@@ -60,8 +66,76 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                       : 1,
                   color: Colors.white.withOpacity(.7),
                 ),
+              ),
+              Positioned(
+                bottom: AppDimensions.normalize(4),
+                right: AppDimensions.normalize(28),
+                child: positionedItem(
+                  svgPicture: AppAssets.eyeAlt,
+                  value: widget.restaurant.views,
+                ),
+              ),
+              Positioned(
+                bottom: AppDimensions.normalize(4),
+                right: AppDimensions.normalize(4),
+                child: positionedItem(
+                  svgPicture: AppAssets.book,
+                  value: widget.restaurant.reviews,
+                ),
               )
             ],
+          ),
+          Material(
+            elevation: 5,
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: AppDimensions.normalize(4.5),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  for (var i = 0; i < 3; i++)
+                    GestureDetector(
+                      onTap: () => setState(() => selectedTapIndex = i),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              SvgPicture.asset(AppAssets.restaurantTaps[i],
+                                  colorFilter: ColorFilter.mode(
+                                    selectedTapIndex == i
+                                        ? AppColors.deepRed
+                                        : Colors.black,
+                                    BlendMode.srcIn,
+                                  )),
+                              Space.xf(.4),
+                              Text(
+                                AppStrings.restaurantTaps[i],
+                                style: AppText.h3b?.copyWith(
+                                  color: selectedTapIndex == i
+                                      ? AppColors.deepRed
+                                      : Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                          AnimatedContainer(
+                            height: AppDimensions.normalize(1.5),
+                            width: AppDimensions.normalize(40),
+                            margin: EdgeInsets.only(
+                              top: AppDimensions.normalize(4),
+                            ),
+                            duration: const Duration(milliseconds: 200),
+                            color: selectedTapIndex == i
+                                ? AppColors.deepRed
+                                : Colors.white,
+                          )
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            ),
           )
         ],
       ),

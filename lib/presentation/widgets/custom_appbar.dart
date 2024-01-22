@@ -8,7 +8,7 @@ PreferredSizeWidget customAppBar(
   return PreferredSize(
       preferredSize: Size(
         double.infinity,
-        AppDimensions.normalize(22),
+        AppDimensions.normalize(20),
       ),
       child: Align(
         alignment: Alignment.bottomCenter,
