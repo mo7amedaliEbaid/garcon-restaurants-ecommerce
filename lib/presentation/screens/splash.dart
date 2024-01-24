@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void _nextScreen() {
     Future.delayed(const Duration(seconds: 1), () {
       Navigator.of(context).pushNamedAndRemoveUntil(
-        AppRouter.root,
+        AppRouter.signup,
         (route) => false,
       );
     });

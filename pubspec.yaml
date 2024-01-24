@@ -90,7 +90,7 @@ flutter:
     - family: Cairo
       fonts:
         - asset: assets/fonts/Cairo-Bold.ttf
-          weight: 800
+          weight: 900
         - asset: assets/fonts/Cairo-Regular.ttf
           weight: 400
 
