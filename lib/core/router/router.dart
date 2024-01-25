@@ -11,6 +11,7 @@ sealed class AppRouter {
   static const String home = '/home';
   static const String restaurant = '/restaurant';
   static const String signup = '/signup';
+  static const String signIn = '/signIn';
 
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -28,6 +29,8 @@ sealed class AppRouter {
             builder: (_) => RestaurantScreen(restaurant: restaurant));
       case signup:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
+      case signIn:
+        return MaterialPageRoute(builder: (_) => const SignInScreen());
       default:
         throw const RouteException('Route not found!');
     }

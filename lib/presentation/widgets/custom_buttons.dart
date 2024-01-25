@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:garcon/configs/app_dimensions.dart';
 
-Widget customElevatedButton({
-  required double width,
-  required double height,
-  required Color color,
-  required double borderRadius,
-  required String text,
-  required TextStyle textStyle,
-  required void Function()? onPressed,
-}) {
+Widget customElevatedButton(
+    {required double width,
+    required double height,
+    required Color color,
+    required double borderRadius,
+    required String text,
+    required TextStyle textStyle,
+    required void Function()? onPressed,
+    bool withArrow = false}) {
   return SizedBox(
     width: width,
     height: height,
@@ -20,9 +21,23 @@ Widget customElevatedButton({
           borderRadius: BorderRadius.circular(borderRadius),
         ),
       ),
-      child: Text(
-        text,
-        style: textStyle,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            text,
+            style: textStyle,
+          ),
+          withArrow
+              ? Padding(
+                  padding: EdgeInsets.only(left: AppDimensions.normalize(4)),
+                  child: const Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                  ),
+                )
+              : const SizedBox.shrink()
+        ],
       ),
     ),
   );

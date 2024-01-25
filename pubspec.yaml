@@ -93,7 +93,7 @@ flutter:
         - asset: assets/fonts/Cairo-Bold.ttf
           weight: 900
         - asset: assets/fonts/Cairo-Regular.ttf
-          weight: 400
+          weight: 500
 
   # fonts:
   #   - family: Schyler

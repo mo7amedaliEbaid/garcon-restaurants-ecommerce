@@ -3,3 +3,4 @@ export 'screens/splash.dart';
 export 'screens/root.dart';
 export 'screens/home.dart';
 export 'screens/signup.dart';
+export 'screens/signin.dart';

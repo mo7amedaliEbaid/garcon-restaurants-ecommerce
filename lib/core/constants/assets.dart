@@ -21,6 +21,8 @@ sealed class AppAssets {
   static const String search = "assets/svg/searchg.svg";
   static const String arrowLeft = "assets/svg/arrow_left.svg";
   static const String info = "assets/svg/info.svg";
+  static const String lock = "assets/svg/lock.svg";
+  static const String email = "assets/svg/email.svg";
 
   static const List<String> restaurantTaps = [
     book,

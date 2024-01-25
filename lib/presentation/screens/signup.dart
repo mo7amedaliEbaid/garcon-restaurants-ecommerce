@@ -44,12 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   style: AppText.h1b,
                 ),
                 Space.yf(1.8),
-                TextFormField(
-                  decoration: InputDecoration(
-                      contentPadding: Space.all(1, .5),
-                      border: const OutlineInputBorder(),
-                      labelText: "Email Address*"),
-                ),
+                customTextField(labelText: "Email Address*"),
                 Space.yf(1.8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: AppDimensions.normalize(19),
                       decoration: BoxDecoration(
                           border:
-                              Border.all(color: Colors.black.withOpacity(.5)),
+                              Border.all(color: Colors.grey.withOpacity(.5)),
                           borderRadius: BorderRadius.all(
                               Radius.circular(AppDimensions.normalize(2)))),
                       child: Center(
@@ -78,23 +73,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     SizedBox(
-                      width: AppDimensions.normalize(80),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                            contentPadding: Space.all(1, .5),
-                            border: const OutlineInputBorder(),
-                            labelText: "Mobile*"),
-                      ),
-                    ),
+                        width: AppDimensions.normalize(80),
+                        child: customTextField(labelText: "Mobile*")),
                   ],
                 ),
                 Space.yf(1.8),
-                TextFormField(
-                  decoration: InputDecoration(
-                      contentPadding: Space.all(1, .5),
-                      border: const OutlineInputBorder(),
-                      labelText: "Password*"),
-                ),
+                customTextField(labelText: "Password*"),
+                Space.yf(1.8),
+                customTextField(labelText: "Confirm Password*"),
+                Space.yf(2.8),
+                "By creating an account you agree to our\nTerms of Service and Privacy Policy"
+                    .applyStyle(
+                        defaultStyle: AppText.b1!
+                            .copyWith(height: AppDimensions.normalize(.7)),
+                        wordStyles: {
+                          'Service': AppText.b1b!.copyWith(
+                            color: AppColors.deepRed,
+                          ),
+                          'Policy': AppText.b1b!.copyWith(
+                            color: AppColors.darkPurple,
+                          ),
+                        },
+                        textAlign: TextAlign.center),
+                Space.yf(3.5),
+                customElevatedButton(
+                    width: double.infinity,
+                    height: AppDimensions.normalize(21),
+                    color: AppColors.deepRed,
+                    borderRadius: AppDimensions.normalize(5),
+                    text: "SIGN UP",
+                    textStyle: AppText.h3b!.copyWith(color: Colors.white),
+                    onPressed: () {},
+                    withArrow: true),
+                Space.yf(1.5),
               ],
             ),
           ),

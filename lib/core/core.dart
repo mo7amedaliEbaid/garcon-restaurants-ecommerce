@@ -24,3 +24,6 @@ export 'extensions/extensions.dart';
 
 //observer
 export 'observer/bloc_observer.dart';
+
+//validator
+export 'validator/validator.dart';
