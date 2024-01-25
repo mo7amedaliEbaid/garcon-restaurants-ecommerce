@@ -3,8 +3,16 @@ import 'package:garcon/core/core.dart';
 
 import '../../configs/configs.dart';
 
-Widget customTextField({required String labelText, Widget? prefix}) {
+Widget customTextField(
+    {required String labelText,
+    Widget? prefix,
+    String? Function(String?)? validator,
+    required TextEditingController controller}) {
   return TextFormField(
+    autovalidateMode: AutovalidateMode.onUserInteraction,
+    validator: validator,
+    controller: controller,
+    style: AppText.b2b,
     decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey.withOpacity(.5)),
@@ -16,7 +24,6 @@ Widget customTextField({required String labelText, Widget? prefix}) {
         border: const OutlineInputBorder(),
         labelText: labelText,
         prefixIcon: prefix,
-
         prefixIconConstraints:
             BoxConstraints(maxHeight: AppDimensions.normalize(12))),
   );

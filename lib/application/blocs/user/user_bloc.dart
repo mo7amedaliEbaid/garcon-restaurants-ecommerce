@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,7 +45,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   void _onGetUser(GetUserEvent event, Emitter<UserState> emit) {
     _userSubscription = userRepository.getUser(event.id).listen((User user) {
-      print(user.fullName);
+      log(user.email);
       add(UserChangedEvent(user: user));
     });
   }

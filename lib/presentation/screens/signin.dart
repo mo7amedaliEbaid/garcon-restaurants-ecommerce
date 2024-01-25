@@ -5,8 +5,28 @@ import 'package:garcon/presentation/widgets.dart';
 import '../../configs/configs.dart';
 import '../../core/core.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
+
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  final TextEditingController _emailController = TextEditingController();
+
+  final TextEditingController _passwordController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+
+  final Validators _validators = Validators();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +56,7 @@ class SignInScreen extends StatelessWidget {
                 Space.yf(2),
                 customTextField(
                     labelText: "Email",
+                    controller: _emailController,
                     prefix: Padding(
                       padding: EdgeInsets.only(
                         left: AppDimensions.normalize(9),
@@ -48,6 +69,7 @@ class SignInScreen extends StatelessWidget {
                 Space.yf(1.5),
                 customTextField(
                     labelText: "Password",
+                    controller: _passwordController,
                     prefix: Padding(
                       padding: EdgeInsets.only(
                         left: AppDimensions.normalize(9),
@@ -86,7 +108,9 @@ class SignInScreen extends StatelessWidget {
                     borderRadius: AppDimensions.normalize(5),
                     text: "Create Account".toUpperCase(),
                     textStyle: AppText.h3b!.copyWith(color: Colors.white),
-                    onPressed: () {}),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(AppRouter.signup);
+                    }),
               ],
             ),
           ),

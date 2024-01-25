@@ -1,9 +1,15 @@
+import 'dart:developer';
+
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:garcon/application/application.dart';
 import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
 import 'package:garcon/presentation/widgets.dart';
+
+import '../../models/user.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -14,6 +20,28 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   CountryCode selectedCountry = CountryCode.fromCountryCode('EG');
+
+  final TextEditingController _emailController = TextEditingController();
+
+  final TextEditingController _phoneController = TextEditingController();
+
+  final TextEditingController _passwordController = TextEditingController();
+
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+
+  final Validators _validators = Validators();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _phoneController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,86 +55,126 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Center(
           child: Padding(
             padding: Space.hf(1.8),
-            child: Column(
-              children: [
-                Space.yf(4.5),
-                SvgPicture.asset(
-                  AppAssets.logoText,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.deepRed,
-                    BlendMode.srcIn,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Space.yf(4.5),
+                  SvgPicture.asset(
+                    AppAssets.logoText,
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.deepRed,
+                      BlendMode.srcIn,
+                    ),
+                    height: AppDimensions.normalize(18),
                   ),
-                  height: AppDimensions.normalize(18),
-                ),
-                Space.yf(4.5),
-                Text(
-                  "Create an Account",
-                  style: AppText.h1b,
-                ),
-                Space.yf(1.8),
-                customTextField(labelText: "Email Address*"),
-                Space.yf(1.8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: AppDimensions.normalize(40),
-                      height: AppDimensions.normalize(19),
-                      decoration: BoxDecoration(
-                          border:
-                              Border.all(color: Colors.grey.withOpacity(.5)),
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(AppDimensions.normalize(2)))),
-                      child: Center(
-                        child: CountryCodePicker(
-                          onChanged: (code) {
-                            setState(() {
-                              selectedCountry = code;
-                            });
-                          },
-                          initialSelection: 'EG',
-                          favorite: const ['+20', 'EG'],
-                          padding: EdgeInsets.zero,
-                          showCountryOnly: false,
-                          showFlag: true,
+                  Space.yf(4.5),
+                  Text(
+                    "Create an Account",
+                    style: AppText.h1b,
+                  ),
+                  Space.yf(1.8),
+                  customTextField(
+                      labelText: "Email Address*",
+                      controller: _emailController,
+                      validator: _validators.validateEmail),
+                  Space.yf(1.8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: AppDimensions.normalize(40),
+                        height: AppDimensions.normalize(19),
+                        decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Colors.grey.withOpacity(.5)),
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(AppDimensions.normalize(2)))),
+                        child: Center(
+                          child: CountryCodePicker(
+                            onChanged: (code) {
+                              setState(() {
+                                selectedCountry = code;
+                                log(selectedCountry.toString());
+                              });
+                            },
+                            initialSelection: 'EG',
+                            favorite: const ['+20', 'EG'],
+                            padding: EdgeInsets.zero,
+                            showCountryOnly: false,
+                            showFlag: true,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
+                      SizedBox(
                         width: AppDimensions.normalize(80),
-                        child: customTextField(labelText: "Mobile*")),
-                  ],
-                ),
-                Space.yf(1.8),
-                customTextField(labelText: "Password*"),
-                Space.yf(1.8),
-                customTextField(labelText: "Confirm Password*"),
-                Space.yf(2.8),
-                "By creating an account you agree to our\nTerms of Service and Privacy Policy"
-                    .applyStyle(
-                        defaultStyle: AppText.b1!
-                            .copyWith(height: AppDimensions.normalize(.7)),
-                        wordStyles: {
-                          'Service': AppText.b1b!.copyWith(
-                            color: AppColors.deepRed,
-                          ),
-                          'Policy': AppText.b1b!.copyWith(
-                            color: AppColors.darkPurple,
-                          ),
-                        },
-                        textAlign: TextAlign.center),
-                Space.yf(3.5),
-                customElevatedButton(
+                        child: customTextField(
+                          labelText: "Mobile*",
+                          controller: _phoneController,
+                          validator: _validators.validateNumbers,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Space.yf(1.8),
+                  customTextField(
+                    labelText: "Password*",
+                    controller: _passwordController,
+                    validator: _validators.validatePassword,
+                  ),
+                  Space.yf(1.8),
+                  customTextField(
+                    labelText: "Confirm Password*",
+                    controller: _confirmPasswordController,
+                    validator: (value) => _validators.validateConfirmPassword(
+                      _passwordController.text,
+                      value,
+                    ),
+                  ),
+                  Space.yf(2.8),
+                  "By creating an account you agree to our\nTerms of Service and Privacy Policy"
+                      .applyStyle(
+                    defaultStyle: AppText.b1!.copyWith(
+                      height: AppDimensions.normalize(.7),
+                    ),
+                    wordStyles: {
+                      'Service': AppText.b1b!.copyWith(
+                        color: AppColors.deepRed,
+                      ),
+                      'Policy': AppText.b1b!.copyWith(
+                        color: AppColors.darkPurple,
+                      ),
+                    },
+                    textAlign: TextAlign.center,
+                  ),
+                  Space.yf(3.5),
+                  customElevatedButton(
+                    withArrow: true,
                     width: double.infinity,
                     height: AppDimensions.normalize(21),
                     color: AppColors.deepRed,
                     borderRadius: AppDimensions.normalize(5),
                     text: "SIGN UP",
                     textStyle: AppText.h3b!.copyWith(color: Colors.white),
-                    onPressed: () {},
-                    withArrow: true),
-                Space.yf(1.5),
-              ],
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        User user = User(
+                          email: _emailController.text.trim(),
+                          phoneNumber: _phoneController.text.trim(),
+                          countryCode: selectedCountry.toString(),
+                        );
+                        context.read<SignUpBloc>().add(
+                              SignUpWithCredential(
+                                user: user,
+                                password: _passwordController.text,
+                              ),
+                            );
+                      }
+                    },
+                  ),
+                  Space.yf(1.5),
+                ],
+              ),
             ),
           ),
         ),

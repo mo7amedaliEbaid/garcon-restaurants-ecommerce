@@ -3,39 +3,28 @@ import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
   final String? id;
-  final String fullName;
   final String email;
- // final String address;
- // final String city;
- // final String country;
+
+  final String countryCode;
   final String phoneNumber;
 
   User({
     this.id,
-    this.fullName = '',
     this.email = '',
-   // this.address = '',
-   // this.city = '',
-    //this.country = '',
+    this.countryCode = '',
     this.phoneNumber = '',
   });
 
   User copyWith({
     String? id,
-    String? fullName,
     String? email,
-   /* String? address,
-    String? city,
-    String? country,*/
+    String? countryCode,
     String? phoneNumber,
   }) {
     return User(
       id: id ?? this.id,
-      fullName: fullName ?? this.fullName,
       email: email ?? this.email,
-      /*address: address ?? this.address,
-      city: city ?? this.city,
-      country: country ?? this.country,*/
+      countryCode: countryCode ?? this.countryCode,
       phoneNumber: phoneNumber ?? this.phoneNumber,
     );
   }
@@ -43,27 +32,20 @@ class User extends Equatable {
   factory User.fromSnapshot(DocumentSnapshot snap) {
     return User(
       id: snap.id,
-      fullName: snap['fullName'],
       email: snap['email'],
-     /* address: snap['address'],
-      city: snap['city'],
-      country: snap['country'],*/
+      countryCode: snap['countryCode'],
       phoneNumber: snap['phoneNumber'],
     );
   }
 
   Map<String, Object> toDocument() {
     return {
-      'fullName': fullName,
       'email': email,
-    /*  'address': address,
-      'city': city,
-      'country': country,*/
+      'countryCode': countryCode,
       'phoneNumber': phoneNumber,
     };
   }
 
   @override
-  List<Object?> get props =>
-      [id, fullName, email,/* address, city, country,*/ phoneNumber];
+  List<Object?> get props => [id, email, countryCode, phoneNumber];
 }

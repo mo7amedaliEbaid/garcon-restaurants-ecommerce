@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import '../../models/models.dart';
-part 'base_auth_repo.dart';
 
+part 'base_auth_repo.dart';
 
 class AuthRepository extends BaseAuthRepository {
   final auth.FirebaseAuth _firebaseAuth;
@@ -48,12 +48,10 @@ class AuthRepository extends BaseAuthRepository {
       final auth.User signedUser = credential.user!;
 
       await firestore.collection('users').doc(signedUser.uid).set({
-        'fullName': user.fullName,
-   /*     'city': user.city,
-        'country': user.country,*/
+        'countryCode': user.countryCode,
         'phoneNumber': user.phoneNumber,
         'email': user.email,
-       // 'address': user.address,
+        // 'address': user.address,
       });
     } catch (_) {}
   }
@@ -62,8 +60,6 @@ class AuthRepository extends BaseAuthRepository {
     final currentUser = _firebaseAuth.currentUser;
     return currentUser != null;
   }
-
-
 
   @override
   // TODO: implement user
