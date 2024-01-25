@@ -43,7 +43,8 @@ dependencies:
   cloud_firestore:
   firebase_auth:
   dots_indicator:
-  equatable: 
+  equatable:
+  country_code_picker:
 
 dev_dependencies:
   flutter_test:
