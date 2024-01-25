@@ -45,6 +45,7 @@ dependencies:
   dots_indicator:
   equatable:
   country_code_picker:
+  flag:
 
 dev_dependencies:
   flutter_test:

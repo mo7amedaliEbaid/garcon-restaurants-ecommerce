@@ -66,8 +66,10 @@ class MyApp extends StatelessWidget {
           onGenerateRoute: AppRouter.onGenerateRoute,
           initialRoute: AppRouter.splash,
           theme: ThemeData(
-            fontFamily: AppStrings.fontFamily,
-          ),
+              fontFamily: AppStrings.fontFamily,
+              dialogTheme: const DialogTheme(
+                backgroundColor: Colors.white,
+              )),
         ),
       ),
     );

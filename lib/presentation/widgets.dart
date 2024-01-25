@@ -8,3 +8,4 @@ export 'widgets/filter_components.dart';
 export 'widgets/custom_appbar.dart';
 export 'widgets/restaurant_components.dart';
 export 'widgets/custom_textfield.dart';
+export 'widgets/auth_dialog.dart';

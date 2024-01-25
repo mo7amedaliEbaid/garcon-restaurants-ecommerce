@@ -148,28 +148,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textAlign: TextAlign.center,
                   ),
                   Space.yf(3.5),
-                  customElevatedButton(
-                    withArrow: true,
-                    width: double.infinity,
-                    height: AppDimensions.normalize(21),
-                    color: AppColors.deepRed,
-                    borderRadius: AppDimensions.normalize(5),
-                    text: "SIGN UP",
-                    textStyle: AppText.h3b!.copyWith(color: Colors.white),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        User user = User(
-                          email: _emailController.text.trim(),
-                          phoneNumber: _phoneController.text.trim(),
-                          countryCode: selectedCountry.toString(),
-                        );
-                        context.read<SignUpBloc>().add(
+                  BlocConsumer<SignUpBloc, SignUpState>(
+                    listener: (context, state) {
+                      if (state.status == SignUpStatus.error) {}
+
+                      if (state.status == SignUpStatus.success) {}
+                    },
+                    builder: (context, state) {
+                      return customElevatedButton(
+                        withArrow: true,
+                        width: double.infinity,
+                        height: AppDimensions.normalize(21),
+                        color: AppColors.deepRed,
+                        borderRadius: AppDimensions.normalize(5),
+                        text: "SIGN UP",
+                        textStyle: AppText.h3b!.copyWith(color: Colors.white),
+                        onPressed: () {
+                          /*  if (_formKey.currentState!.validate()) {
+                            User user = User(
+                              email: _emailController.text.trim(),
+                              phoneNumber: _phoneController.text.trim(),
+                              countryCode: selectedCountry.toString(),
+                            );
+                            context.read<SignUpBloc>().add(
                               SignUpWithCredential(
                                 user: user,
                                 password: _passwordController.text,
                               ),
                             );
-                      }
+                          }*/
+                          showAuthDialog(context, isError: false);
+                        },
+                      );
                     },
                   ),
                   Space.yf(1.5),
