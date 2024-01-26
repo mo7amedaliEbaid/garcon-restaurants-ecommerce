@@ -34,6 +34,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   final Validators _validators = Validators();
 
+  bool isValid = true;
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -85,6 +87,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Container(
                         width: AppDimensions.normalize(40),
                         height: AppDimensions.normalize(19),
+                        margin: !isValid
+                            ? EdgeInsets.only(
+                                bottom: AppDimensions.normalize(9))
+                            : EdgeInsets.zero,
                         decoration: BoxDecoration(
                             border:
                                 Border.all(color: Colors.grey.withOpacity(.5)),
@@ -96,6 +102,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               setState(() {
                                 selectedCountry = code;
                                 log(selectedCountry.toString());
+                                log(selectedCountry.code.toString());
                               });
                             },
                             initialSelection: 'EG',
@@ -150,34 +157,45 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Space.yf(3.5),
                   BlocConsumer<SignUpBloc, SignUpState>(
                     listener: (context, state) {
-                      if (state.status == SignUpStatus.error) {}
-
-                      if (state.status == SignUpStatus.success) {}
+                      if (state.status == SignUpStatus.error) {
+                        showAuthDialog(context, isError: true);
+                      }
+                      if (state.status == SignUpStatus.success) {
+                        showAuthDialog(context, isError: false);
+                      }
                     },
                     builder: (context, state) {
                       return customElevatedButton(
-                        withArrow: true,
+                        withArrow: (state.status == SignUpStatus.submitting)
+                            ? false
+                            : true,
                         width: double.infinity,
                         height: AppDimensions.normalize(21),
                         color: AppColors.deepRed,
                         borderRadius: AppDimensions.normalize(5),
-                        text: "SIGN UP",
+                        text: (state.status == SignUpStatus.submitting)
+                            ? "WAIT"
+                            : "SIGN UP",
                         textStyle: AppText.h3b!.copyWith(color: Colors.white),
                         onPressed: () {
-                          /*  if (_formKey.currentState!.validate()) {
+                          if (_formKey.currentState!.validate()) {
                             User user = User(
                               email: _emailController.text.trim(),
                               phoneNumber: _phoneController.text.trim(),
                               countryCode: selectedCountry.toString(),
+                              country: selectedCountry.code.toString(),
                             );
                             context.read<SignUpBloc>().add(
-                              SignUpWithCredential(
-                                user: user,
-                                password: _passwordController.text,
-                              ),
-                            );
-                          }*/
-                          showAuthDialog(context, isError: false);
+                                  SignUpWithCredential(
+                                    user: user,
+                                    password: _passwordController.text,
+                                  ),
+                                );
+                          } else {
+                            setState(() {
+                              isValid = false;
+                            });
+                          }
                         },
                       );
                     },

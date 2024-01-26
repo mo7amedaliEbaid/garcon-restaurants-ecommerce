@@ -51,7 +51,7 @@ class AuthRepository extends BaseAuthRepository {
         'countryCode': user.countryCode,
         'phoneNumber': user.phoneNumber,
         'email': user.email,
-        // 'address': user.address,
+        'country': user.country,
       });
     } catch (_) {}
   }

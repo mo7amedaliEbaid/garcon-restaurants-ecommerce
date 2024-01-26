@@ -4,7 +4,9 @@ import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
 
 PreferredSizeWidget customAppBar(
-    {required BuildContext context, required String title}) {
+    {required BuildContext context,
+    required String title,
+    bool isWithArrow = true}) {
   return PreferredSize(
       preferredSize: Size(
         double.infinity,
@@ -17,16 +19,18 @@ PreferredSizeWidget customAppBar(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: SvgPicture.asset(
-                  AppAssets.arrowLeft,
-                  colorFilter:
-                      const ColorFilter.mode(Colors.black, BlendMode.srcIn),
-                ),
-              ),
+              isWithArrow
+                  ? GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: SvgPicture.asset(
+                        AppAssets.arrowLeft,
+                        colorFilter: const ColorFilter.mode(
+                            Colors.black, BlendMode.srcIn),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
               Text(
                 title.capitalize(),
                 style: AppText.h3b,

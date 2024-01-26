@@ -8,7 +8,7 @@ class UserState extends Equatable {
   });
 
   factory UserState.initial() {
-    return UserState(user: User());
+    return const UserState(user: User());
   }
 
   @override

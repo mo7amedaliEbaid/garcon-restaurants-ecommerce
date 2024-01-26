@@ -4,6 +4,7 @@ import 'package:garcon/configs/app_typography.dart';
 import 'package:garcon/core/constants/assets.dart';
 import 'package:garcon/core/constants/colors.dart';
 import 'package:garcon/presentation/screens.dart';
+import 'package:garcon/presentation/screens/account.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
@@ -18,7 +19,7 @@ class _RootScreenState extends State<RootScreen> {
   static const List<Widget> _screens = <Widget>[
     HomeScreen(),
     HomeScreen(),
-    HomeScreen(),
+    AccountScreen(),
     HomeScreen(),
   ];
 

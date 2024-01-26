@@ -29,14 +29,16 @@ Future<void> showAuthDialog(BuildContext context,
                   ),
                   Space.yf(1.5),
                   customElevatedButton(
-                    width: AppDimensions.normalize(55),
+                    width: AppDimensions.normalize(52),
                     height: AppDimensions.normalize(18),
                     color: AppColors.deepRed,
                     borderRadius: AppDimensions.normalize(3),
-                    text: isError ? "Dismiss" : "My Account",
+                    text: isError ? "Dismiss" : "Continue",
                     textStyle: AppText.h3b!.copyWith(color: Colors.white),
                     onPressed: () {
-                      Navigator.pop(context);
+                      (isError)
+                          ? Navigator.pop(context)
+                          : Navigator.of(context).pushNamed(AppRouter.root);
                     },
                   )
                 ],
