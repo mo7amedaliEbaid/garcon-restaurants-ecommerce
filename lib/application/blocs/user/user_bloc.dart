@@ -53,4 +53,19 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   void _oUserChanged(UserChangedEvent event, Emitter<UserState> emit) {
     emit(state.copyWith(user: event.user));
   }
+
+  void _onUpdateUser(UpdateUserEvent event, Emitter<UserState> emit) async {
+    try {
+      await userRepository.updateUser(
+          updatedUser: event.updatedUser,
+          currentUser: event.currentUser,
+          userId: event.userId);
+      // Emit UserChangedEvent to refresh the UI
+      add(UserChangedEvent(user: event.updatedUser));
+    } catch (e) {
+      log('Error updating user: $e');
+      // Handle any errors that may occur during the update
+      emit(state.copyWith(error: e.toString())); // Emit error state
+    }
+  }
 }

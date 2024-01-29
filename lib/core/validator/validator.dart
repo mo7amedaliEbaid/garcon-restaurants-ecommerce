@@ -33,6 +33,16 @@ class Validators {
     }
     return null;
   }
+  String? validateUserName(String? value) {
+    if (value == null || value.isEmpty) return 'First name is required';
+    if (value.length < 2) {
+      return 'User name must be at least 2 characters long';
+    }
+    if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value)) {
+      return 'User name must be alphabetic';
+    }
+    return null;
+  }
 
 /*  String? validatePhoneNumber(String? value) {
     if (value == null || value.isEmpty) return 'Phone number is required';

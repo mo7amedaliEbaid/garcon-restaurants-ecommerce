@@ -9,7 +9,7 @@ import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
 import 'package:garcon/presentation/widgets.dart';
 
-import '../../models/user.dart';
+import '../../models/models.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -26,6 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _phoneController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _userNameController = TextEditingController();
 
   final TextEditingController _confirmPasswordController =
       TextEditingController();
@@ -80,6 +81,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       labelText: "Email Address*",
                       controller: _emailController,
                       validator: _validators.validateEmail),
+                  Space.yf(1.8),
+                  customTextField(
+                      labelText: "User Name*",
+                      controller: _userNameController,
+                      validator: _validators.validateUserName),
                   Space.yf(1.8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

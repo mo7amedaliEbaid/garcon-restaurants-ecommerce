@@ -46,6 +46,7 @@ dependencies:
   equatable:
   country_code_picker:
   flag:
+  photo_view:
 
 dev_dependencies:
   flutter_test:

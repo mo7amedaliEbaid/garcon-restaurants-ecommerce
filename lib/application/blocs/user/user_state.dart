@@ -19,6 +19,7 @@ class UserState extends Equatable {
 
   UserState copyWith({
     User? user,
+    String? error,
   }) {
     return UserState(
       user: user ?? this.user,

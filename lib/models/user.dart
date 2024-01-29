@@ -5,6 +5,7 @@ import 'package:flag/flag.dart';
 class User extends Equatable {
   final String? id;
   final String email;
+  final String userName;
   final String countryCode;
   final String country;
   final String phoneNumber;
@@ -12,6 +13,7 @@ class User extends Equatable {
   const User({
     this.id,
     this.email = '',
+    this.userName = '',
     this.countryCode = '',
     this.country = '',
     this.phoneNumber = '',
@@ -20,6 +22,7 @@ class User extends Equatable {
   User copyWith({
     String? id,
     String? email,
+    String? userName,
     String? countryCode,
     String? country,
     String? phoneNumber,
@@ -27,6 +30,7 @@ class User extends Equatable {
     return User(
       id: id ?? this.id,
       email: email ?? this.email,
+      userName: userName ?? this.userName,
       countryCode: countryCode ?? this.countryCode,
       country: country ?? this.country,
       phoneNumber: phoneNumber ?? this.phoneNumber,
@@ -37,8 +41,9 @@ class User extends Equatable {
     return User(
       id: snap.id,
       email: snap['email'],
+      userName: snap['userName'],
       countryCode: snap['countryCode'],
-      country: snap['country'] ,
+      country: snap['country'],
       phoneNumber: snap['phoneNumber'],
     );
   }
@@ -46,6 +51,7 @@ class User extends Equatable {
   Map<String, Object> toDocument() {
     return {
       'email': email,
+      'userName': userName,
       'countryCode': countryCode,
       'country': country,
       'phoneNumber': phoneNumber,
@@ -53,5 +59,6 @@ class User extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id, email, countryCode, country, phoneNumber];
+  List<Object?> get props =>
+      [id, email, userName, countryCode, country, phoneNumber];
 }
