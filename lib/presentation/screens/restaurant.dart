@@ -5,6 +5,7 @@ import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
 import 'package:garcon/models/models.dart';
 import 'package:garcon/presentation/widgets.dart';
+import 'package:garcon/presentation/widgets/pickups_view.dart';
 
 class RestaurantScreen extends StatefulWidget {
   const RestaurantScreen({super.key, required this.restaurant});
@@ -19,7 +20,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   PageController _pageController = PageController();
   int selectedPageIndex = 1;
   int selectedTapIndex = 0;
-  int selectedCategoryIndex = 0;
+ // int selectedCategoryIndex = 0;
 
   @override
   void initState() {
@@ -29,6 +30,11 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> views = [
+      const SizedBox.shrink(),
+      PickUpsView(restaurant: widget.restaurant),
+      const SizedBox.shrink()
+    ];
     return Scaffold(
       appBar: customAppBar(
         context: context,
@@ -138,58 +144,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(
-              top: AppDimensions.normalize(4.5),
-            ),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  for (var i = 0; i < 5; i++)
-                    GestureDetector(
-                      onTap: () => setState(() => selectedCategoryIndex = i),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                           /*   SvgPicture.asset(AppAssets.restaurantTaps[i],
-                                  colorFilter: ColorFilter.mode(
-                                    selectedCategoryIndex == i
-                                        ? AppColors.deepRed
-                                        : Colors.black,
-                                    BlendMode.srcIn,
-                                  )),
-                              Space.xf(.4),*/
-                              Text(
-                                AppStrings.restaurantCategories[i],
-                                style: AppText.h3b?.copyWith(
-                                  color: selectedCategoryIndex == i
-                                      ? AppColors.deepRed
-                                      : Colors.black,
-                                ),
-                              )
-                            ],
-                          ),
-                          AnimatedContainer(
-                            height: AppDimensions.normalize(1.5),
-                            width: AppDimensions.normalize(40),
-                            margin: EdgeInsets.only(
-                              top: AppDimensions.normalize(4),
-                            ),
-                            duration: const Duration(milliseconds: 200),
-                            color: selectedCategoryIndex == i
-                                ? AppColors.deepRed
-                                : Colors.white,
-                          )
-                        ],
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          ),
+          views[selectedTapIndex]
         ],
       ),
     );

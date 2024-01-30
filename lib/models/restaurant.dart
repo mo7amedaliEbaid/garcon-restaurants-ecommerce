@@ -8,6 +8,8 @@ class Restaurant extends Equatable {
   final String views;
   final String reviews;
   final List<dynamic> tags;
+  final List<dynamic> categories;
+  final List<dynamic> pickups;
 
   const Restaurant({
     required this.id,
@@ -16,6 +18,8 @@ class Restaurant extends Equatable {
     required this.views,
     required this.reviews,
     required this.tags,
+    required this.categories,
+    required this.pickups,
   });
 
   static Restaurant fromSnapShot(DocumentSnapshot snap) {
@@ -26,6 +30,8 @@ class Restaurant extends Equatable {
       views: snap['views'],
       reviews: snap['reviews'],
       tags: snap['tags'],
+      categories: snap['categories'],
+      pickups: snap['pickups'],
     );
     return restaurant;
   }
@@ -38,5 +44,7 @@ class Restaurant extends Equatable {
         views,
         reviews,
         tags,
+        pickups,
+        categories,
       ];
 }
