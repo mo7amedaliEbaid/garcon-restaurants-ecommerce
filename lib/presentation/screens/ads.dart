@@ -112,7 +112,7 @@ class _AdsScreenState extends State<AdsScreen> {
                         onTap: () {
                           if (state.status == AuthStatus.unauthenticated) {
                             Navigator.of(context).pushNamedAndRemoveUntil(
-                              AppRouter.signup,
+                              AppRouter.signIn,
                               (route) => false,
                             );
                           }

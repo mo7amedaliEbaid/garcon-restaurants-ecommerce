@@ -62,7 +62,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 Space.yf(1.5),
                 customTextField(
                   labelText: "Confirm New Password*",
-                  controller: _newPasswordController,
+                  controller: _confirmNewPasswordController,
                   validator: (value) => _validators.validateConfirmPassword(
                     _newPasswordController.text,
                     value,

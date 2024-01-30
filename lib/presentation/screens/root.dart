@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:garcon/configs/app_typography.dart';
-import 'package:garcon/core/constants/assets.dart';
-import 'package:garcon/core/constants/colors.dart';
+import 'package:garcon/configs/configs.dart';
+import 'package:garcon/core/core.dart';
 import 'package:garcon/presentation/screens.dart';
-import 'package:garcon/presentation/screens/account.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
@@ -20,7 +18,7 @@ class _RootScreenState extends State<RootScreen> {
     HomeScreen(),
     HomeScreen(),
     AccountScreen(),
-    HomeScreen(),
+    SettingsScreen(),
   ];
 
   void _onItemTapped(int index) {
