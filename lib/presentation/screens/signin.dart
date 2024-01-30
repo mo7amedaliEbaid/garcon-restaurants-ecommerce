@@ -96,10 +96,19 @@ class _SignInScreenState extends State<SignInScreen> {
                   BlocConsumer<SignInBloc, SignInState>(
                     listener: (context, state) {
                       if (state.status == SignInStatus.error) {
-                        showAuthDialog(context, isError: true);
+                        customDialog(context,
+                            text: "Error Occurred\nTry Again!",
+                            buttonText: "Dismiss", onPressed: () {
+                          Navigator.pop(context);
+                        });
                       }
                       if (state.status == SignInStatus.success) {
-                        showAuthDialog(context, isError: false);
+                        customDialog(context,
+                            text:
+                                "You have successfully\nLogged in with Garcoon",
+                            buttonText: "Continue", onPressed: () {
+                          Navigator.of(context).pushNamed(AppRouter.root);
+                        });
                       }
                     },
                     builder: (context, state) {

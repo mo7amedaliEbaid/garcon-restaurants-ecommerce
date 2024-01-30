@@ -23,6 +23,12 @@ sealed class AppAssets {
   static const String info = "assets/svg/info.svg";
   static const String lock = "assets/svg/lock.svg";
   static const String email = "assets/svg/email.svg";
+  static const String logoWithText = "assets/svg/logoWithtext.svg";
+  static const String pickup = "assets/svg/pickup.svg";
+  static const String booking = "assets/svg/booking.svg";
+  static const String redCurve = "assets/svg/redCurve.svg";
+  static const String purpleCurve = "assets/svg/purpleCurve.svg";
+  static const String arrowForward = "assets/svg/arrowForward.svg";
 
   static const List<String> restaurantTaps = [
     book,

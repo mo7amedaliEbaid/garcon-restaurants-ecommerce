@@ -8,3 +8,4 @@ export 'screens/edit_profile.dart';
 export 'screens/change_password.dart';
 export 'screens/settings.dart';
 export 'screens/account.dart';
+export 'screens/choose.dart';

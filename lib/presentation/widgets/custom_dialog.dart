@@ -3,15 +3,21 @@ import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
 import 'package:garcon/presentation/widgets.dart';
 
-Future<void> showAuthDialog(BuildContext context,
-    {required bool isError}) async {
+Future<void> customDialog(
+  BuildContext context, {
+  required String text,
+  required void Function()? onPressed,
+  required String buttonText,
+}) async {
   return showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return Dialog(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppDimensions.normalize(6)),
+            borderRadius: BorderRadius.circular(
+              AppDimensions.normalize(6),
+            ),
           ),
           child: SizedBox(
             height: AppDimensions.normalize(80),
@@ -21,9 +27,7 @@ Future<void> showAuthDialog(BuildContext context,
                 children: [
                   Space.yf(2),
                   Text(
-                    isError
-                        ? "Error Occurred\nTry Again!"
-                        : "You have successfully\nregistered with Garcoon",
+                    text,
                     style: AppText.h3b,
                     textAlign: TextAlign.center,
                   ),
@@ -33,13 +37,9 @@ Future<void> showAuthDialog(BuildContext context,
                     height: AppDimensions.normalize(18),
                     color: AppColors.deepRed,
                     borderRadius: AppDimensions.normalize(3),
-                    text: isError ? "Dismiss" : "Continue",
+                    text: buttonText,
                     textStyle: AppText.h3b!.copyWith(color: Colors.white),
-                    onPressed: () {
-                      (isError)
-                          ? Navigator.pop(context)
-                          : Navigator.of(context).pushNamed(AppRouter.root);
-                    },
+                    onPressed: onPressed,
                   )
                 ],
               ),

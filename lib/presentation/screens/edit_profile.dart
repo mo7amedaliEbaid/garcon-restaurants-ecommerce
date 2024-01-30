@@ -141,8 +141,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 updatedUser: updatedUser,
                               ),
                             );
-
-                        Navigator.pop(context);
+                        customDialog(
+                          context,
+                          text: "Your profile has been\nUpdated successfully !",
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          buttonText: "Dismiss",
+                        );
                       } else {
                         setState(() {
                           isValid = false;

@@ -119,7 +119,7 @@ class _AdsScreenState extends State<AdsScreen> {
 
                           if (state.status == AuthStatus.authenticated) {
                             Navigator.of(context).pushNamedAndRemoveUntil(
-                              AppRouter.root,
+                              AppRouter.choose,
                               (route) => false,
                             );
                           }

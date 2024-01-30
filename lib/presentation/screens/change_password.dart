@@ -82,7 +82,15 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             currentPassword: _passwordController.text.trim(),
                             newPassword:
                                 _confirmNewPasswordController.text.trim()));
-                        Navigator.pop(context);
+                        customDialog(
+                          context,
+                          text:
+                              "Your password has been\nChanged successfully !",
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          buttonText: "Dismiss",
+                        );
                       }
                     })
               ],

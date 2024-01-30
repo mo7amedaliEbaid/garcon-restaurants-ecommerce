@@ -14,6 +14,7 @@ sealed class AppRouter {
   static const String signIn = '/signIn';
   static const String editProfile = '/editProfile';
   static const String changePassword = '/changePassword';
+  static const String choose = '/choose';
 
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -21,6 +22,8 @@ sealed class AppRouter {
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case ads:
         return MaterialPageRoute(builder: (_) => const AdsScreen());
+      case choose:
+        return MaterialPageRoute(builder: (_) => const ChooseScreen());
       case root:
         return MaterialPageRoute(builder: (_) => const RootScreen());
       case home:
