@@ -71,18 +71,12 @@ Widget loadingState() {
 }
 
 Widget restaurantsTitle() {
-  return BlocBuilder<SelectTagCubit, SelectTagState>(
-    builder: (context, state) {
-      return Padding(
-        padding: Space.hf(1.2),
-        child: Text(
-          (state.selectedTag == null)
-              ? "Restaurants"
-              : state.selectedTag!.name.capitalize(),
-          style: AppText.h2b,
-        ),
-      );
-    },
+  return Padding(
+    padding: Space.hf(1.2),
+    child: Text(
+      "Restaurants",
+      style: AppText.h2b,
+    ),
   );
 }
 

@@ -73,7 +73,7 @@ Widget bottomRow(BuildContext context) {
           text: "Apply",
           textStyle: AppText.h3b!.copyWith(color: Colors.white),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).pushNamed(AppRouter.filteredRestaurants);
           })
     ],
   );

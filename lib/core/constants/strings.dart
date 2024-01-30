@@ -7,4 +7,12 @@ final class AppStrings {
     "Pickup",
     "Info",
   ];
+
+  static const List<String> restaurantCategories = [
+    "Main Course",
+    "Best Selling",
+    "Salad",
+    "Meat",
+    "Vegan",
+  ];
 }

@@ -9,3 +9,4 @@ export 'screens/change_password.dart';
 export 'screens/settings.dart';
 export 'screens/account.dart';
 export 'screens/choose.dart';
+export 'screens/filtered_restaurants.dart';

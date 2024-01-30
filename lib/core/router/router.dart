@@ -15,6 +15,7 @@ sealed class AppRouter {
   static const String editProfile = '/editProfile';
   static const String changePassword = '/changePassword';
   static const String choose = '/choose';
+  static const String filteredRestaurants = '/filteredRestaurants';
 
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -42,6 +43,8 @@ sealed class AppRouter {
             builder: (_) => EditProfileScreen(currentUser: currentUser));
       case changePassword:
         return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
+      case filteredRestaurants:
+        return MaterialPageRoute(builder: (_) => const FilteredRestaurantsScreen());
       default:
         throw const RouteException('Route not found!');
     }
