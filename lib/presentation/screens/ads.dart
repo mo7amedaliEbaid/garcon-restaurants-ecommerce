@@ -106,39 +106,57 @@ class _AdsScreenState extends State<AdsScreen> {
                 Positioned(
                   bottom: AppDimensions.normalize(25),
                   right: 0,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushNamed(AppRouter.root);
-                    },
-                    child: Container(
-                      height: AppDimensions.normalize(16),
-                      width: AppDimensions.normalize(38),
-                      decoration: BoxDecoration(
-                        color: AppColors.deepRed,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(AppDimensions.normalize(4)),
-                          bottomLeft:
-                              Radius.circular(AppDimensions.normalize(4)),
-                        ),
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Skip",
-                              style: AppText.h3?.copyWith(color: Colors.white),
+                  child: BlocBuilder<AuthBloc, AuthState>(
+                    builder: (context, state) {
+                      return GestureDetector(
+                        onTap: () {
+                          if (state.status == AuthStatus.unauthenticated) {
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              AppRouter.signup,
+                              (route) => false,
+                            );
+                          }
+
+                          if (state.status == AuthStatus.authenticated) {
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              AppRouter.root,
+                              (route) => false,
+                            );
+                          }
+                        },
+                        child: Container(
+                          height: AppDimensions.normalize(16),
+                          width: AppDimensions.normalize(38),
+                          decoration: BoxDecoration(
+                            color: AppColors.deepRed,
+                            borderRadius: BorderRadius.only(
+                              topLeft:
+                                  Radius.circular(AppDimensions.normalize(4)),
+                              bottomLeft:
+                                  Radius.circular(AppDimensions.normalize(4)),
                             ),
-                            Space.xf(.6),
-                            SvgPicture.asset(
-                              AppAssets.skip,
-                              colorFilter: const ColorFilter.mode(
-                                  Colors.white, BlendMode.srcIn),
-                            )
-                          ],
+                          ),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Skip",
+                                  style:
+                                      AppText.h3?.copyWith(color: Colors.white),
+                                ),
+                                Space.xf(.6),
+                                SvgPicture.asset(
+                                  AppAssets.skip,
+                                  colorFilter: const ColorFilter.mode(
+                                      Colors.white, BlendMode.srcIn),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                 )
               ],

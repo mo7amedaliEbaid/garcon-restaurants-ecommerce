@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flag/flag.dart';
 
-class User extends Equatable {
+class CurrentUser extends Equatable {
   final String? id;
   final String email;
   final String userName;
@@ -10,7 +10,7 @@ class User extends Equatable {
   final String country;
   final String phoneNumber;
 
-  const User({
+  const CurrentUser({
     this.id,
     this.email = '',
     this.userName = '',
@@ -19,7 +19,7 @@ class User extends Equatable {
     this.phoneNumber = '',
   });
 
-  User copyWith({
+  CurrentUser copyWith({
     String? id,
     String? email,
     String? userName,
@@ -27,7 +27,7 @@ class User extends Equatable {
     String? country,
     String? phoneNumber,
   }) {
-    return User(
+    return CurrentUser(
       id: id ?? this.id,
       email: email ?? this.email,
       userName: userName ?? this.userName,
@@ -37,8 +37,8 @@ class User extends Equatable {
     );
   }
 
-  factory User.fromSnapshot(DocumentSnapshot snap) {
-    return User(
+  factory CurrentUser.fromSnapshot(DocumentSnapshot snap) {
+    return CurrentUser(
       id: snap.id,
       email: snap['email'],
       userName: snap['userName'],

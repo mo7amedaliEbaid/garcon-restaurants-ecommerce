@@ -21,7 +21,7 @@ class GetUserEvent extends UserEvent {
 }
 
 class UserChangedEvent extends UserEvent {
-  final User user;
+  final CurrentUser user;
 
   const UserChangedEvent({
     required this.user,
@@ -32,15 +32,28 @@ class UserChangedEvent extends UserEvent {
 }
 
 class UpdateUserEvent extends UserEvent {
-  final User updatedUser;
-  final User currentUser;
+  final CurrentUser updatedUser;
+ // final User currentUser;
   final String userId;
 
   const UpdateUserEvent(
       {required this.userId,
-      required this.currentUser,
+ //     required this.currentUser,
       required this.updatedUser});
 
   @override
-  List<Object> get props => [updatedUser, currentUser, userId];
+  List<Object> get props => [updatedUser, userId];
+}
+
+class ChangePasswordEvent extends UserEvent {
+  final String currentPassword;
+  final String newPassword;
+
+  const ChangePasswordEvent({
+    required this.currentPassword,
+    required this.newPassword,
+  });
+
+  @override
+  List<Object> get props => [currentPassword, newPassword];
 }

@@ -3,8 +3,10 @@ import 'package:flag/flag_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garcon/application/application.dart';
-import 'package:garcon/configs/app_dimensions.dart';
-import 'package:garcon/configs/space.dart';
+import 'package:garcon/configs/configs.dart';
+import 'package:garcon/core/constants/colors.dart';
+import 'package:garcon/core/core.dart';
+import 'package:garcon/core/extensions/extensions.dart';
 import 'package:garcon/presentation/widgets.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -18,7 +20,7 @@ class AccountScreen extends StatelessWidget {
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
           return Padding(
-            padding: Space.v!,
+            padding: Space.all(1.2, .5),
             child: Center(
               child: Column(
                 children: [
@@ -31,8 +33,40 @@ class AccountScreen extends StatelessWidget {
                     flagSize: FlagSize.size_1x1,
                     borderRadius: AppDimensions.normalize(10),
                   ),
-                  Space.yf(.5),
-                  Text(state.user.email),
+                  Space.yf(.2),
+                  Text(
+                    state.user.userName.capitalize(),
+                    style: AppText.h1b,
+                  ),
+                  Text(
+                    state.user.email,
+                    style: AppText.b2b?.copyWith(color: AppColors.greyColor),
+                  ),
+                  Space.yf(.6),
+                  Text(
+                    state.user.phoneNumber,
+                    style: AppText.b1b?.copyWith(color: AppColors.greyColor),
+                  ),
+                  Space.yf(2.6),
+                  accountRow(
+                      title: "Edit Profile",
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                          AppRouter.editProfile,
+                          arguments: state.user,
+                        );
+                      }),
+                  Space.y!,
+                  Divider(
+                    color: AppColors.greyColor.withOpacity(.4),
+                  ),
+                  Space.y!,
+                  accountRow(
+                      title: "Change Password",
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(AppRouter.changePassword);
+                      }),
                 ],
               ),
             ),

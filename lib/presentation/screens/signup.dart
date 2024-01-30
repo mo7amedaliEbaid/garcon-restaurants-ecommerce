@@ -185,9 +185,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         textStyle: AppText.h3b!.copyWith(color: Colors.white),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            User user = User(
+                            CurrentUser user = CurrentUser(
                               email: _emailController.text.trim(),
                               phoneNumber: _phoneController.text.trim(),
+                              userName: _userNameController.text.trim(),
                               countryCode: selectedCountry.toString(),
                               country: selectedCountry.code.toString(),
                             );

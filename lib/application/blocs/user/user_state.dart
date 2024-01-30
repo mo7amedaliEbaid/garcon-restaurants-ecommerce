@@ -1,14 +1,14 @@
 part of 'user_bloc.dart';
 
 class UserState extends Equatable {
-  final User user;
+  final CurrentUser user;
 
   const UserState({
     required this.user,
   });
 
   factory UserState.initial() {
-    return const UserState(user: User());
+    return const UserState(user: CurrentUser());
   }
 
   @override
@@ -18,7 +18,7 @@ class UserState extends Equatable {
   String toString() => 'UserState(user: $user)';
 
   UserState copyWith({
-    User? user,
+    CurrentUser? user,
     String? error,
   }) {
     return UserState(

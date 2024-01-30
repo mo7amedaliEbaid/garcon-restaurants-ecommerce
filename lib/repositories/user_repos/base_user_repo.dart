@@ -1,10 +1,15 @@
 part of 'user_repo.dart';
 
 abstract class BaseUserRepository {
-  Stream<User> getUser(String userId);
+  Stream<CurrentUser> getUser(String userId);
 
   Future<void> updateUser(
-      {required User updatedUser,
-      required User currentUser,
+      {required CurrentUser updatedUser,
+      // required User currentUser,
       required String userId});
+
+  Future<void> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  });
 }

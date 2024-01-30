@@ -19,8 +19,10 @@ class MyApp extends StatelessWidget {
               firestore: FirebaseFirestore.instance),
         ),
         RepositoryProvider(
-          create: (context) =>
-              UserRepository(firebaseFirestore: FirebaseFirestore.instance),
+          create: (context) => UserRepository(
+            firebaseFirestore: FirebaseFirestore.instance,
+            firebaseAuth: FirebaseAuth.instance,
+          ),
         ),
       ],
       child: MultiBlocProvider(

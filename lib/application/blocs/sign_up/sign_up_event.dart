@@ -8,7 +8,7 @@ abstract class SignUpEvent extends Equatable {
 }
 
 class SignUpWithCredential extends SignUpEvent {
-  final User user;
+  final CurrentUser user;
   final String password;
 
   const SignUpWithCredential({required this.user, required this.password});
