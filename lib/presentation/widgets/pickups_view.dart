@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garcon/models/models.dart';
+import 'package:garcon/presentation/widgets.dart';
 
 import '../../configs/configs.dart';
 import '../../core/core.dart';
@@ -21,53 +22,32 @@ class _PickUpsViewState extends State<PickUpsView> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: AppDimensions.normalize(4.5),
-      ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: Space.all(1, 1.5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             for (var i = 0; i < widget.restaurant.categories.length; i++)
-              GestureDetector(
-                onTap: () => setState(() => selectedCategoryIndex = i),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        /*   SvgPicture.asset(AppAssets.restaurantTaps[i],
-                                  colorFilter: ColorFilter.mode(
-                                    selectedCategoryIndex == i
-                                        ? AppColors.deepRed
-                                        : Colors.black,
-                                    BlendMode.srcIn,
-                                  )),
-                              Space.xf(.4),*/
-                        Text(
-                          widget.restaurant.categories[i],
-                          style: AppText.h3b?.copyWith(
-                            color: selectedCategoryIndex == i
-                                ? AppColors.deepRed
-                                : Colors.black,
-                          ),
-                        )
-                      ],
-                    ),
-                    AnimatedContainer(
-                      height: AppDimensions.normalize(1.5),
-                      width: AppDimensions.normalize(40),
-                      margin: EdgeInsets.only(
-                        top: AppDimensions.normalize(4),
-                      ),
-                      duration: const Duration(milliseconds: 200),
-                      color: selectedCategoryIndex == i
-                          ? AppColors.deepRed
-                          : Colors.white,
-                    )
-                  ],
+              Padding(
+                padding: EdgeInsets.only(
+                  right: AppDimensions.normalize(4),
                 ),
+                child: customElevatedButton(
+                    width: AppDimensions.normalize(52),
+                    height: AppDimensions.normalize(18),
+                    color: selectedCategoryIndex == i
+                        ? AppColors.deepRed
+                        : AppColors.lightGrey,
+                    borderRadius: AppDimensions.normalize(6),
+                    text:
+                        widget.restaurant.categories[i].toString().capitalize(),
+                    textStyle: AppText.b2b!.copyWith(
+                        color: selectedCategoryIndex == i
+                            ? Colors.white
+                            : Colors.black),
+                    onPressed: () => setState(() => selectedCategoryIndex = i)),
               ),
           ],
         ),

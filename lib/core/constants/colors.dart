@@ -5,4 +5,5 @@ sealed class AppColors {
   static const Color darkRed = Color(0xffB43A39);
   static const Color darkPurple = Color(0xff461C5F);
   static const Color greyColor = Color(0xffA2A2A2);
+  static const Color lightGrey = Color(0xffD8D8D8);
 }
