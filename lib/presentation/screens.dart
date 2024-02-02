@@ -10,3 +10,4 @@ export 'screens/settings.dart';
 export 'screens/account.dart';
 export 'screens/choose.dart';
 export 'screens/filtered_restaurants.dart';
+export 'screens/photo_view.dart';

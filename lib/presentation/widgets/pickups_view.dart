@@ -1,9 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garcon/models/models.dart';
 import 'package:garcon/presentation/widgets.dart';
 
-import '../../application/cubits/pickup/pickup_cubit.dart';
+import '../../application/application.dart';
 import '../../configs/configs.dart';
 import '../../core/core.dart';
 
@@ -33,13 +34,13 @@ class _PickUpsViewState extends State<PickUpsView> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Padding(
-        padding: Space.all(1, 1.5),
-        child: Column(
-          children: [
-            Row(
+    return Column(
+      children: [
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Padding(
+            padding: Space.all(1, 1.5),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 for (var i = 0; i < widget.restaurant.categories.length; i++)
@@ -73,26 +74,24 @@ class _PickUpsViewState extends State<PickUpsView> {
                   ),
               ],
             ),
-            BlocBuilder<PickupCubit, PickupState>(
-              builder: (context, state) {
-                if (state is PickupLoaded && state.pickups.isNotEmpty) {
-                  return SizedBox(
-                    height: 200,
-                    width: 400,
-                    child: ListView.builder(
-                        itemCount: state.pickups.length,
-                        itemBuilder: (context, index) {
-                          return Text(state.pickups[index].name);
-                        }),
-                  );
-                } else {
-                  return const SizedBox.shrink();
-                }
-              },
-            )
-          ],
+          ),
         ),
-      ),
+        BlocBuilder<PickupCubit, PickupState>(
+          builder: (context, state) {
+            if (state is PickupLoaded && state.pickups.isNotEmpty) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  for (var i = 0; i < state.pickups.length; i++)
+                    pickupItem(pickUp: state.pickups[i])
+                ],
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
+          },
+        )
+      ],
     );
   }
 }

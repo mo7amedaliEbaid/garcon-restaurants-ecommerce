@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garcon/models/models.dart';
+import 'package:garcon/presentation/screens/photo_view.dart';
 import 'package:garcon/presentation/screens/restaurant.dart';
 import '../../presentation/screens.dart';
 import '../core.dart';
@@ -16,6 +17,7 @@ sealed class AppRouter {
   static const String changePassword = '/changePassword';
   static const String choose = '/choose';
   static const String filteredRestaurants = '/filteredRestaurants';
+  static const String photoView = '/photoView';
 
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -44,7 +46,13 @@ sealed class AppRouter {
       case changePassword:
         return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
       case filteredRestaurants:
-        return MaterialPageRoute(builder: (_) => const FilteredRestaurantsScreen());
+        return MaterialPageRoute(
+            builder: (_) => const FilteredRestaurantsScreen());
+      case photoView:
+        String image = routeSettings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => PhotoViewScreen(image: image),
+        );
       default:
         throw const RouteException('Route not found!');
     }

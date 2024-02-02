@@ -7,6 +7,7 @@ class PickUp extends Equatable {
   final String image;
   final String price;
   final String category;
+  final String description;
 
   const PickUp({
     required this.id,
@@ -14,6 +15,7 @@ class PickUp extends Equatable {
     required this.image,
     required this.price,
     required this.category,
+    required this.description,
   });
 
   static PickUp fromSnapShot(DocumentSnapshot snap) {
@@ -23,6 +25,7 @@ class PickUp extends Equatable {
       image: snap['image'],
       price: snap['price'],
       category: snap['category'],
+      description: snap['description'],
     );
     return pickUp;
   }
@@ -34,5 +37,6 @@ class PickUp extends Equatable {
         image,
         price,
         category,
+        description,
       ];
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:garcon/configs/configs.dart';
@@ -35,5 +36,24 @@ Widget positionedItem({
         ],
       ),
     ),
+  );
+}
+
+Widget pickupCachedNetworkImage(String image){
+  return CachedNetworkImage(
+    imageUrl: image,
+    fit: BoxFit.cover,
+    errorWidget: (context, url, error) {
+      return Image.asset(
+        AppAssets.placeHolder,
+        fit: BoxFit.cover,
+      );
+    },
+    placeholder: (context, url) {
+      return Image.asset(
+        AppAssets.placeHolder,
+        fit: BoxFit.cover,
+      );
+    },
   );
 }
