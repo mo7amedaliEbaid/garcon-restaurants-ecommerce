@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garcon/application/application.dart';
+import 'package:garcon/repositories/pickups/pickups_repo.dart';
 import 'package:garcon/repositories/repositories.dart';
 import '../core.dart';
 
@@ -44,23 +45,36 @@ class MyApp extends StatelessWidget {
                 SignUpBloc(authRepository: context.read<AuthRepository>()),
           ),
           BlocProvider(
-            create: (context) =>
-                SignInBloc(authRepository: context.read<AuthRepository>()),
+            create: (context) => SignInBloc(
+              authRepository: context.read<AuthRepository>(),
+            ),
           ),
-          BlocProvider(create: (context) => ConnectivityCubit()),
+          BlocProvider(
+            create: (context) => ConnectivityCubit(),
+          ),
           BlocProvider(
               lazy: false,
               create: (context) =>
                   RestaurantsBloc(restaurantsRepository: RestaurantsRepo())
                     ..add(LoadRestaurants())),
           BlocProvider(
-              create: (context) => FilterCubit(repository: RestaurantsRepo())),
+            create: (context) => FilterCubit(
+              repository: RestaurantsRepo(),
+            ),
+          ),
           BlocProvider(
               lazy: false,
               create: (context) =>
                   TagsBloc(restaurantsRepository: RestaurantsRepo())
                     ..add(LoadTags())),
-          BlocProvider(create: (context) => SelectTagCubit()),
+          BlocProvider(
+            create: (context) => SelectTagCubit(),
+          ),
+          BlocProvider(
+            create: (context) => PickupCubit(
+              pickupRepo: PickupsRepo(),
+            ),
+          ),
         ],
         child: MaterialApp(
           title: 'Garcon',

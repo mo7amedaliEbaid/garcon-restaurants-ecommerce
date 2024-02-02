@@ -10,3 +10,4 @@ export 'blocs/tags/tags_bloc.dart';
 export 'cubits/connectivity/connectivity_cubit.dart';
 export 'cubits/filter/filter_cubit.dart';
 export 'cubits/select_tag/select_tag_cubit.dart';
+export 'cubits/pickup/pickup_cubit.dart';

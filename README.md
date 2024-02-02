@@ -1,6 +1,7 @@
 # garcon
 
-Restaurants App.
+- Restaurants App.
+- In Development.
 
 https://github.com/mo7amedaliEbaid/garcon/wiki/Introduction
 

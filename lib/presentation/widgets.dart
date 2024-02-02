@@ -11,3 +11,4 @@ export 'widgets/custom_textfield.dart';
 export 'widgets/custom_dialog.dart';
 export 'widgets/account_row.dart';
 export 'widgets/choose_stack.dart';
+export 'widgets/pickups_view.dart';

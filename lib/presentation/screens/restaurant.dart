@@ -5,7 +5,6 @@ import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
 import 'package:garcon/models/models.dart';
 import 'package:garcon/presentation/widgets.dart';
-import 'package:garcon/presentation/widgets/pickups_view.dart';
 
 class RestaurantScreen extends StatefulWidget {
   const RestaurantScreen({super.key, required this.restaurant});
@@ -20,7 +19,8 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   PageController _pageController = PageController();
   int selectedPageIndex = 1;
   int selectedTapIndex = 0;
- // int selectedCategoryIndex = 0;
+
+  // int selectedCategoryIndex = 0;
 
   @override
   void initState() {
