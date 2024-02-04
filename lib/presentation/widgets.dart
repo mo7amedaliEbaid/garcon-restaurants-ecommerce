@@ -13,3 +13,4 @@ export 'widgets/account_row.dart';
 export 'widgets/choose_stack.dart';
 export 'widgets/pickups_view.dart';
 export 'widgets/pickup_item.dart';
+export 'widgets/booking_view.dart';
