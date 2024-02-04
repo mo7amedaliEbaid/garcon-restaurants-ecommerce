@@ -46,6 +46,14 @@ class RestaurantsRepo extends BaseRestaurantsRepository {
       }).toList();
     });
   }*/
+  @override
+  List<Restaurant> searchRestaurantsByName(
+      List<Restaurant> restaurants, String name) {
+    return restaurants
+        .where((restaurant) =>
+            restaurant.name.toLowerCase().contains(name.toLowerCase()))
+        .toList();
+  }
 
   @override
   Stream<List<Tag>> getAllTags() {

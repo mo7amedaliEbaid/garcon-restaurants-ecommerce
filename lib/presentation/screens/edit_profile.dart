@@ -135,12 +135,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           country: selectedCountry.code.toString(),
                         );
 
-                        context.read<UserBloc>().add(
-                              UpdateUserEvent(
-                                userId: FirebaseAuth.instance.currentUser!.uid,
-                                updatedUser: updatedUser,
-                              ),
-                            );
+                        context.read<UserBloc>().add(StartUserEvent());
                         customDialog(
                           context,
                           text: "Your profile has been\nUpdated successfully !",

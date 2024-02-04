@@ -47,6 +47,7 @@ dependencies:
   country_code_picker:
   flag:
   photo_view:
+  dropdown_button2:
 
 dev_dependencies:
   flutter_test:

@@ -6,6 +6,7 @@ import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
 import 'package:garcon/models/models.dart';
 import 'package:garcon/presentation/widgets.dart';
+import 'package:garcon/presentation/widgets/booking_view.dart';
 import 'package:photo_view/photo_view.dart';
 
 class RestaurantScreen extends StatefulWidget {
@@ -33,7 +34,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> views = [
-      const SizedBox.shrink(),
+      const BookingView(),
       PickUpsView(restaurant: widget.restaurant),
       const SizedBox.shrink()
     ];
