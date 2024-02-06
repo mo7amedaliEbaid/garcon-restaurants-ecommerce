@@ -52,6 +52,9 @@ class MyApp extends StatelessWidget {
             create: (context) => ConnectivityCubit(),
           ),
           BlocProvider(
+            create: (context) => NavigationCubit(),
+          ),
+          BlocProvider(
               lazy: false,
               create: (context) =>
                   RestaurantsBloc(restaurantsRepository: RestaurantsRepo())

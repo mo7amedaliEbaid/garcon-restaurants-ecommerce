@@ -9,6 +9,8 @@ class Reservation extends Equatable {
   final String time;
   final String personsNumber;
   final String userId;
+  final String restaurant;
+  final String amount;
 
   const Reservation({
     required this.time,
@@ -17,6 +19,8 @@ class Reservation extends Equatable {
     required this.name,
     required this.branch,
     required this.date,
+    required this.restaurant,
+    required this.amount,
   });
 
   @override
@@ -27,6 +31,8 @@ class Reservation extends Equatable {
         time,
         personsNumber,
         userId,
+        restaurant,
+        amount,
       ];
 
   factory Reservation.fromSnapshot(DocumentSnapshot snapshot) {
@@ -36,8 +42,10 @@ class Reservation extends Equatable {
       branch: data['branch'],
       date: data['date'],
       time: data['time'],
+      amount: data['amount'],
       personsNumber: data['personsNumber'],
       userId: data['userId'],
+      restaurant: data['restaurant'],
     );
   }
 
@@ -48,6 +56,8 @@ class Reservation extends Equatable {
       'date': date,
       'personsNumber': personsNumber,
       'time': time,
+      'restaurant': restaurant,
+      'amount': amount,
       'userId': FirebaseAuth.instance.currentUser!.uid,
     };
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:garcon/application/application.dart';
 import 'package:garcon/presentation/widgets.dart';
 
 import '../../application/blocs/sign_in/sign_in_bloc.dart';
@@ -106,8 +107,12 @@ class _SignInScreenState extends State<SignInScreen> {
                         customDialog(context,
                             text:
                                 "You have successfully\nLogged in with Garcoon",
-                            buttonText: "Continue", onPressed: () {
-                          Navigator.of(context).pushNamed(AppRouter.root);
+                            buttonText: "My Account", onPressed: () {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              AppRouter.root, (route) => false);
+                          context
+                              .read<NavigationCubit>()
+                              .updateTab(NavigationTab.accountTap);
                         });
                       }
                     },

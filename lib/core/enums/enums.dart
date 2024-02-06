@@ -18,4 +18,9 @@ enum SignUpStatus {
   error,
 }
 
-
+enum NavigationTab {
+  homeTab,
+  reservationTap,
+  accountTap,
+  settingsTab,
+}

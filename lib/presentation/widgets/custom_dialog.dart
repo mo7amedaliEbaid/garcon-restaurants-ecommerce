@@ -33,7 +33,7 @@ Future<void> customDialog(
                   ),
                   Space.yf(1.5),
                   customElevatedButton(
-                    width: AppDimensions.normalize(52),
+                    width: AppDimensions.normalize(58),
                     height: AppDimensions.normalize(18),
                     color: AppColors.deepRed,
                     borderRadius: AppDimensions.normalize(3),

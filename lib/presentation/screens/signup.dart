@@ -174,8 +174,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         customDialog(context,
                             text:
                                 "You have successfully\nRegistered with Garcoon",
-                            buttonText: "Continue", onPressed: () {
-                          Navigator.of(context).pushNamed(AppRouter.root);
+                            buttonText: "My Account", onPressed: () {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              AppRouter.root, (route) => false);
+                          context
+                              .read<NavigationCubit>()
+                              .updateTab(NavigationTab.accountTap);
                         });
                       }
                     },

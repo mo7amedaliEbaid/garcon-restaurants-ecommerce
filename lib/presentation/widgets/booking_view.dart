@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garcon/application/application.dart';
 import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/constants/colors.dart';
+import 'package:garcon/core/router/router.dart';
 import 'package:garcon/models/models.dart';
 import 'package:garcon/presentation/widgets.dart';
 
@@ -227,17 +228,19 @@ class _BookingViewState extends State<BookingView> {
             borderRadius: 0,
             text: "Confirm Booking",
             textStyle: AppText.h3b!.copyWith(color: Colors.white),
-            onPressed: () async {
+            onPressed: () {
               Reservation reservation = Reservation(
                   time: selectedTime.format(context).toString(),
                   personsNumber: numberOfPersons.toString(),
                   userId: FirebaseAuth.instance.currentUser!.uid,
                   name: _nameController.text,
                   branch: dropDownValue.toString(),
+                  restaurant: widget.restaurant.name,
+                  amount: widget.restaurant.reservation,
                   date: selectedDate.toString().substring(0, 10));
-              await context
-                  .read<AddReservationCubit>()
-                  .addReservation(reservation);
+
+              Navigator.of(context)
+                  .pushNamed(AppRouter.checkout, arguments: reservation);
             })
       ],
     );

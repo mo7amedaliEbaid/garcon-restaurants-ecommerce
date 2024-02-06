@@ -18,6 +18,8 @@ sealed class AppRouter {
   static const String choose = '/choose';
   static const String filteredRestaurants = '/filteredRestaurants';
   static const String photoView = '/photoView';
+  static const String checkout = '/checkout';
+  static const String successfulBooking = '/successfulBooking';
 
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -53,6 +55,14 @@ sealed class AppRouter {
         return MaterialPageRoute(
           builder: (_) => PhotoViewScreen(image: image),
         );
+      case checkout:
+        Reservation reservation = routeSettings.arguments as Reservation;
+        return MaterialPageRoute(
+          builder: (_) => CheckoutScreen(reservation: reservation),
+        );
+      case successfulBooking:
+        return MaterialPageRoute(
+            builder: (_) => const SuccessfulBookingScreen());
       default:
         throw const RouteException('Route not found!');
     }
