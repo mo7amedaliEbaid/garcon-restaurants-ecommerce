@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garcon/application/application.dart';
-import 'package:garcon/application/cubits/search/search_cubit.dart';
-import 'package:garcon/repositories/pickups/pickups_repo.dart';
 import 'package:garcon/repositories/repositories.dart';
 import '../core.dart';
 
@@ -79,6 +77,16 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => SearchCubit(
               repository: RestaurantsRepo(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => AddReservationCubit(
+              reservationsRepository: ReservationRepository(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => GetReservationsCubit(
+              reservationsRepository: ReservationRepository(),
             ),
           ),
         ],

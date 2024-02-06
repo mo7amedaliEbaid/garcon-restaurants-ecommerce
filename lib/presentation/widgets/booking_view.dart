@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:garcon/application/application.dart';
 import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/constants/colors.dart';
-import 'package:garcon/core/extensions/extensions.dart';
 import 'package:garcon/models/models.dart';
 import 'package:garcon/presentation/widgets.dart';
 
@@ -213,11 +215,11 @@ class _BookingViewState extends State<BookingView> {
                   ],
                 ),
               ),
+              bookingFooter()
             ],
           ),
         ),
-
-        Space.yf(2),
+        reservationAmountColumn(widget.restaurant.reservation.toString()),
         customElevatedButton(
             width: double.infinity,
             height: AppDimensions.normalize(24),
@@ -225,8 +227,17 @@ class _BookingViewState extends State<BookingView> {
             borderRadius: 0,
             text: "Confirm Booking",
             textStyle: AppText.h3b!.copyWith(color: Colors.white),
-            onPressed: () {
-
+            onPressed: () async {
+              Reservation reservation = Reservation(
+                  time: selectedTime.format(context).toString(),
+                  personsNumber: numberOfPersons.toString(),
+                  userId: FirebaseAuth.instance.currentUser!.uid,
+                  name: _nameController.text,
+                  branch: dropDownValue.toString(),
+                  date: selectedDate.toString().substring(0, 10));
+              await context
+                  .read<AddReservationCubit>()
+                  .addReservation(reservation);
             })
       ],
     );

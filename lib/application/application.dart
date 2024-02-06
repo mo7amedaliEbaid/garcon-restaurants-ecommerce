@@ -11,3 +11,6 @@ export 'cubits/connectivity/connectivity_cubit.dart';
 export 'cubits/filter/filter_cubit.dart';
 export 'cubits/select_tag/select_tag_cubit.dart';
 export 'cubits/pickup/pickup_cubit.dart';
+export 'cubits/add_reservation/add_reservation_cubit.dart';
+export 'cubits/get_reservations/get_reservation_cubit.dart';
+export 'cubits/search/search_cubit.dart';

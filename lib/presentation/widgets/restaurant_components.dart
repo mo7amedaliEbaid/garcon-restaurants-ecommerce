@@ -39,7 +39,7 @@ Widget positionedItem({
   );
 }
 
-Widget pickupCachedNetworkImage(String image){
+Widget pickupCachedNetworkImage(String image) {
   return CachedNetworkImage(
     imageUrl: image,
     fit: BoxFit.cover,
@@ -55,5 +55,49 @@ Widget pickupCachedNetworkImage(String image){
         fit: BoxFit.cover,
       );
     },
+  );
+}
+
+Widget reservationAmountColumn(String amount) {
+  return Column(
+    children: [
+      Space.yf(1.5),
+      Text(
+        "Reservation Amount",
+        style: AppText.h2b,
+      ),
+      Space.yf(.5),
+      Text(
+        "$amount KWD",
+        style: AppText.h1b?.copyWith(color: AppColors.deepRed),
+      ),
+      Space.yf(2),
+    ],
+  );
+}
+
+Widget bookingFooter() {
+  return Column(
+    children: [
+      Space.yf(1.8),
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(
+            Icons.error,
+            color: AppColors.deepRed,
+          ),
+          Space.xf(.5),
+          SizedBox(
+            width: AppDimensions.normalize(115),
+            child: const Text(
+              "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum.",
+              overflow: TextOverflow.ellipsis,
+              maxLines: 3,
+            ),
+          ),
+        ],
+      ),
+    ],
   );
 }
