@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:garcon/configs/configs.dart';
+import 'package:garcon/core/constants/colors.dart';
+import 'package:garcon/core/extensions/extensions.dart';
+import 'package:garcon/models/models.dart';
 import 'package:garcon/presentation/widgets.dart';
 
 class BookingView extends StatefulWidget {
-  const BookingView({super.key});
+  const BookingView({super.key, required this.restaurant});
+
+  final Restaurant restaurant;
 
   @override
   State<BookingView> createState() => _BookingViewState();
@@ -11,9 +16,11 @@ class BookingView extends StatefulWidget {
 
 class _BookingViewState extends State<BookingView> {
   final TextEditingController _nameController = TextEditingController();
-  List<String> dropDownItems = ["Select Branch", "1", "2"];
+  List<String> dropDownItems = [];
+  String dropDownValue = "Select Branch";
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
+  int numberOfPersons = 1;
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -42,6 +49,12 @@ class _BookingViewState extends State<BookingView> {
   }
 
   @override
+  void initState() {
+    dropDownItems = ["Select Branch", ...widget.restaurant.branches];
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _nameController.dispose();
     super.dispose();
@@ -49,106 +62,173 @@ class _BookingViewState extends State<BookingView> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Space.all(1, 1),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Customer Name",
-            style: AppText.b1b,
-          ),
-          Space.yf(.5),
-          customTextField(labelText: "Type here", controller: _nameController),
-          Space.yf(1.5),
-          Text(
-            "Restaurant Branch",
-            style: AppText.b1b,
-          ),
-          Space.yf(.5),
-          Container(
-            padding: Space.h1!,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.withOpacity(.5)),
-              borderRadius: BorderRadius.circular(
-                AppDimensions.normalize(4),
+    return Column(
+      children: [
+        Padding(
+          padding: Space.all(1, 1),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Customer Name",
+                style: AppText.b1b,
               ),
-            ),
-            child: DropdownButton(
-                isExpanded: true,
-                underline: const SizedBox.shrink(),
-                value: "Select Branch",
-                items:
-                    dropDownItems.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (value) {}),
-          ),
-          Space.yf(1.5),
-          Text(
-            "Booking Date",
-            style: AppText.b1b,
-          ),
-          Space.yf(.5),
-          Container(
-            padding: Space.all(1.1, .7),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.withOpacity(.5)),
-              borderRadius: BorderRadius.circular(
-                AppDimensions.normalize(4),
+              Space.yf(.5),
+              customTextField(
+                  labelText: "Type here", controller: _nameController),
+              Space.yf(1.5),
+              Text(
+                "Restaurant Branch",
+                style: AppText.b1b,
               ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(selectedDate.toString().substring(0, 10)),
-                GestureDetector(
-                  onTap: () {
-                    _selectDate(context);
-                  },
-                  child: const Icon(
-                    Icons.date_range,
-                    color: Colors.grey,
+              Space.yf(.5),
+              Container(
+                padding: Space.h1!,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey.withOpacity(.5)),
+                  borderRadius: BorderRadius.circular(
+                    AppDimensions.normalize(4),
                   ),
-                )
-              ],
-            ),
-          ),
-          Space.yf(1.5),
-          Text(
-            "Booking Time",
-            style: AppText.b1b,
-          ),
-          Space.yf(.5),
-          Container(
-            padding: Space.all(1.1, .7),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.withOpacity(.5)),
-              borderRadius: BorderRadius.circular(
-                AppDimensions.normalize(4),
+                ),
+                child: DropdownButton(
+                    isExpanded: true,
+                    underline: const SizedBox.shrink(),
+                    value: dropDownValue,
+                    items: dropDownItems
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        dropDownValue = value!;
+                      });
+                    }),
               ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(selectedTime.format(context)),
-                GestureDetector(
-                  onTap: () {
-                    _selectTime(context);
-                  },
-                  child: const Icon(
-                    Icons.timelapse,
-                    color: Colors.grey,
+              Space.yf(1.5),
+              Text(
+                "Booking Date",
+                style: AppText.b1b,
+              ),
+              Space.yf(.5),
+              Container(
+                padding: Space.all(1.1, .7),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey.withOpacity(.5)),
+                  borderRadius: BorderRadius.circular(
+                    AppDimensions.normalize(4),
                   ),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(selectedDate.toString().substring(0, 10)),
+                    GestureDetector(
+                      onTap: () {
+                        _selectDate(context);
+                      },
+                      child: const Icon(
+                        Icons.date_range,
+                        color: Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Space.yf(1.5),
+              Text(
+                "Booking Time",
+                style: AppText.b1b,
+              ),
+              Space.yf(.5),
+              Container(
+                padding: Space.all(1.1, .7),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey.withOpacity(.5)),
+                  borderRadius: BorderRadius.circular(
+                    AppDimensions.normalize(4),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(selectedTime.format(context)),
+                    GestureDetector(
+                      onTap: () {
+                        _selectTime(context);
+                      },
+                      child: const Icon(
+                        Icons.timelapse,
+                        color: Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Space.yf(1.5),
+              Text(
+                "No. Of Person",
+                style: AppText.b1b,
+              ),
+              Space.yf(.5),
+              Container(
+                padding: Space.all(1.1, .7),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey.withOpacity(.5)),
+                  borderRadius: BorderRadius.circular(
+                    AppDimensions.normalize(4),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(numberOfPersons.toString()),
+                    Row(
+                      children: [
+                        GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                numberOfPersons++;
+                              });
+                            },
+                            child: const Icon(
+                              Icons.arrow_upward,
+                              color: Colors.grey,
+                            )),
+                        Space.xf(.2),
+                        GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                numberOfPersons--;
+                              });
+                            },
+                            child: const Icon(
+                              Icons.arrow_downward,
+                              color: Colors.grey,
+                            )),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        Space.yf(2),
+        customElevatedButton(
+            width: double.infinity,
+            height: AppDimensions.normalize(24),
+            color: AppColors.deepRed,
+            borderRadius: 0,
+            text: "Confirm Booking",
+            textStyle: AppText.h3b!.copyWith(color: Colors.white),
+            onPressed: () {
+
+            })
+      ],
     );
   }
 }

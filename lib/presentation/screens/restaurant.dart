@@ -34,7 +34,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> views = [
-      const BookingView(),
+      BookingView(restaurant: widget.restaurant),
       PickUpsView(restaurant: widget.restaurant),
       const SizedBox.shrink()
     ];
