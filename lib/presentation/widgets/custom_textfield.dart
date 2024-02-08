@@ -7,11 +7,13 @@ Widget customTextField(
     {required String labelText,
     Widget? prefix,
     String? Function(String?)? validator,
+    void Function(String)? onChanged,
     required TextEditingController controller}) {
   return TextFormField(
     autovalidateMode: AutovalidateMode.onUserInteraction,
     validator: validator,
     controller: controller,
+    onChanged: onChanged,
     style: AppText.b2b,
     decoration: InputDecoration(
       errorMaxLines: 3,

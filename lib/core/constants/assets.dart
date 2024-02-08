@@ -29,6 +29,7 @@ sealed class AppAssets {
   static const String redCurve = "assets/svg/redCurve.svg";
   static const String purpleCurve = "assets/svg/purpleCurve.svg";
   static const String arrowForward = "assets/svg/arrowForward.svg";
+  static const String notifications = "assets/svg/notifications.svg";
 
   static const List<String> restaurantTaps = [
     book,
