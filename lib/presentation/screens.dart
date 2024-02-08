@@ -14,3 +14,5 @@ export 'screens/photo_view.dart';
 export 'screens/checkout.dart';
 export 'screens/successful_booking.dart';
 export 'screens/reservations.dart';
+export 'screens/restaurant.dart';
+export 'screens/search.dart';

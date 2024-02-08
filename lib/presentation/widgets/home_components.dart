@@ -34,7 +34,11 @@ PreferredSizeWidget homeAppBar(BuildContext context) {
                 child: SvgPicture.asset(AppAssets.filter),
               ),
               Space.xf(.7),
-              SvgPicture.asset(AppAssets.search),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(AppRouter.search);
+                  },
+                  child: SvgPicture.asset(AppAssets.search)),
             ],
           )
         ],

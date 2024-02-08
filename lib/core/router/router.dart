@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:garcon/models/models.dart';
-import 'package:garcon/presentation/screens/photo_view.dart';
-import 'package:garcon/presentation/screens/restaurant.dart';
 import '../../presentation/screens.dart';
 import '../core.dart';
 
@@ -20,6 +18,7 @@ sealed class AppRouter {
   static const String photoView = '/photoView';
   static const String checkout = '/checkout';
   static const String successfulBooking = '/successfulBooking';
+  static const String search = '/search';
 
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -63,6 +62,8 @@ sealed class AppRouter {
       case successfulBooking:
         return MaterialPageRoute(
             builder: (_) => const SuccessfulBookingScreen());
+      case search:
+        return MaterialPageRoute(builder: (_) => const SearchScreen());
       default:
         throw const RouteException('Route not found!');
     }
