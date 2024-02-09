@@ -173,7 +173,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
               right: 0,
               left: 0,
               child: selectedTapIndex == 1
-                  ? pickupsNotchedContainer()
+                  ? pickupsNotchedContainer(context)
                   : const SizedBox.shrink())
         ],
       ),

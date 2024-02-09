@@ -23,6 +23,7 @@ sealed class AppRouter {
   static const String terms = '/terms';
   static const String privacy = '/privacy';
   static const String contactUs = '/contactUs';
+  static const String cart = '/cart';
 
   static const List<String> aboutTaps = [
     terms,
@@ -83,6 +84,8 @@ sealed class AppRouter {
         return MaterialPageRoute(builder: (_) => const TermsScreen());
       case contactUs:
         return MaterialPageRoute(builder: (_) => const ContactUsScreen());
+      case cart:
+        return MaterialPageRoute(builder: (_) => const CartScreen());
       default:
         throw const RouteException('Route not found!');
     }

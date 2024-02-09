@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garcon/models/models.dart';
@@ -28,7 +29,9 @@ class _PickUpsViewState extends State<PickUpsView> {
           widget.restaurant.pickups,
           widget.restaurant.categories.first,
         );
-
+    context.read<CartCubit>().loadCart(
+          FirebaseAuth.instance.currentUser!.uid,
+        );
     super.initState();
   }
 
@@ -77,13 +80,16 @@ class _PickUpsViewState extends State<PickUpsView> {
           ),
         ),
         BlocBuilder<PickupCubit, PickupState>(
-          builder: (context, state) {
-            if (state is PickupLoaded && state.pickups.isNotEmpty) {
+          builder: (context, pickupState) {
+            if (pickupState is PickupLoaded && pickupState.pickups.isNotEmpty) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  for (var i = 0; i < state.pickups.length; i++)
-                    pickupItem(pickUp: state.pickups[i])
+                  for (var i = 0; i < pickupState.pickups.length; i++)
+                    pickupItem(
+                      context: context,
+                      pickUp: pickupState.pickups[i],
+                    )
                 ],
               );
             } else {

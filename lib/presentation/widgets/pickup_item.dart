@@ -1,14 +1,18 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:garcon/core/constants/colors.dart';
-import 'package:garcon/core/extensions/extensions.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:garcon/application/application.dart';
+import 'package:garcon/core/core.dart';
 import 'package:garcon/models/pickup.dart';
 import 'package:garcon/presentation/widgets.dart';
 
 import '../../configs/configs.dart';
-import '../../core/constants/assets.dart';
 
-Widget pickupItem({required PickUp pickUp}) {
+Widget pickupItem({
+  required BuildContext context,
+  required PickUp pickUp,
+
+}) {
   return Stack(
     children: [
       Container(
@@ -60,24 +64,50 @@ Widget pickupItem({required PickUp pickUp}) {
       ),
       Positioned(
         right: AppDimensions.normalize(5),
-        child: Container(
-          height: AppDimensions.normalize(10),
-          width: AppDimensions.normalize(15),
-          decoration: BoxDecoration(
-            color: AppColors.greyColor,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(
-                AppDimensions.normalize(4),
-              ),
-              bottomLeft: Radius.circular(
-                AppDimensions.normalize(4),
+        child: GestureDetector(
+          onTap: () {
+            context.read<CartCubit>().toggleCartItem(
+              FirebaseAuth.instance.currentUser!.uid,
+              pickUp,
+            );
+            context.read<CartCubit>().loadCart(
+              FirebaseAuth.instance.currentUser!.uid,
+
+            );
+          },
+          child: Container(
+            height: AppDimensions.normalize(10),
+            width: AppDimensions.normalize(15),
+            decoration: BoxDecoration(
+              color: AppColors.greyColor,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(
+                  AppDimensions.normalize(4),
+                ),
+                bottomLeft: Radius.circular(
+                  AppDimensions.normalize(4),
+                ),
               ),
             ),
-          ),
-          child: const Center(
-            child: Icon(
-              Icons.add,
-              color: Colors.white,
+            child: Center(
+              child: BlocBuilder<CartCubit, CartState>(
+                builder: (context, state) {
+                  if(state is CartLoaded){
+                    final isInCart = state.pickUps.any((pickup) =>
+                    pickup.id == pickUp.id);
+                    return Icon(
+                      isInCart ? Icons.check : Icons.add,
+                      color: Colors.white,
+                    );
+                  }else{
+                    return const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    );
+                  }
+
+                },
+              ),
             ),
           ),
         ),

@@ -51,7 +51,7 @@ class CartRepository implements BaseCartRepository {
     });
   }
 
-  @override
+ /* @override
   Stream<List<PickUp>> getCart(String userId) async* {
     final userDocRef = _firebaseFirestore.collection('cart').doc(userId);
 
@@ -63,7 +63,7 @@ class CartRepository implements BaseCartRepository {
 
       if (snapshot.exists) {
         final pickupIds = List<String>.from(snapshot.get('pickups') ?? []);
-        log('Meal IDs: $pickupIds');
+        log('Pickup IDs: $pickupIds');
 
         final List<PickUp> pickUps = [];
 
@@ -86,6 +86,48 @@ class CartRepository implements BaseCartRepository {
         }
 
         log('Cart Items: $pickUps');
+
+        controller.add(pickUps);
+      } else {
+        log('User document does not exist.');
+        controller.add([]);
+      }
+    });
+
+    yield* controller.stream;
+  }*/
+  @override
+  Stream<List<PickUp>> getCart(String userId) async* {
+    final userDocRef = _firebaseFirestore.collection('cart').doc(userId);
+
+    final StreamController<List<PickUp>> controller = StreamController<List<PickUp>>();
+
+    userDocRef.snapshots().listen((snapshot) async {
+      log('Snapshot data: ${snapshot.data()}');
+
+      if (snapshot.exists) {
+        final pickupIds = List<String>.from(snapshot.get('pickups') ?? []);
+        log('Pickup IDs: $pickupIds');
+
+        final List<PickUp> pickUps = [];
+
+        for (final pickupId in pickupIds.map((id) => id.toString())) {
+          final pickupDocSnapshot = await _firebaseFirestore
+              .collection('pickups')
+              .doc(pickupId) // Use doc instead of where clause
+              .get();
+
+          if (pickupDocSnapshot.exists) {
+            final pickUp = PickUp.fromSnapShot(pickupDocSnapshot);
+            log('Pickup Description for $pickupId: ${pickUp.description}');
+            pickUps.add(pickUp);
+          } else {
+            log('Pickup document with ID $pickupId does not exist.');
+          }
+        }
+
+        log('Cart Items: $pickUps');
+
         controller.add(pickUps);
       } else {
         log('User document does not exist.');

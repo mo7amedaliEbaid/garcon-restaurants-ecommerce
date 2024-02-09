@@ -20,3 +20,4 @@ export 'screens/about.dart';
 export 'screens/contact.dart';
 export 'screens/terms.dart';
 export 'screens/privacy.dart';
+export 'screens/cart.dart';
