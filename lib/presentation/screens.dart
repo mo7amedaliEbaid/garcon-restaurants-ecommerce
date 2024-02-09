@@ -16,3 +16,7 @@ export 'screens/successful_booking.dart';
 export 'screens/reservations.dart';
 export 'screens/restaurant.dart';
 export 'screens/search.dart';
+export 'screens/about.dart';
+export 'screens/contact.dart';
+export 'screens/terms.dart';
+export 'screens/privacy.dart';

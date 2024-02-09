@@ -14,4 +14,4 @@ export 'widgets/choose_stack.dart';
 export 'widgets/pickups_view.dart';
 export 'widgets/pickup_item.dart';
 export 'widgets/booking_view.dart';
-export 'widgets/settings_item.dart';
+export 'widgets/settings_components.dart';

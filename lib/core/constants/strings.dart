@@ -8,11 +8,12 @@ final class AppStrings {
     "Info",
   ];
 
-  static const List<String> restaurantCategories = [
-    "Main Course",
-    "Best Selling",
-    "Salad",
-    "Meat",
-    "Vegan",
+  static const List<String> aboutTapsStrings = [
+    "Terms & Conditions",
+    "Privacy Policy",
+    "About us",
+    "Contact us",
   ];
+
+
 }

@@ -70,10 +70,7 @@ class SettingsScreen extends StatelessWidget {
               style: AppText.h3b,
             ),
             Space.yf(1.2),
-            settingsItem(title: "Terms & Conditions", endWidget: arrowIcon()),
-            settingsItem(title: "Privacy Policy", endWidget: arrowIcon()),
-            settingsItem(title: "TAbout us", endWidget: arrowIcon()),
-            settingsItem(title: "Contact us", endWidget: arrowIcon()),
+            ...buildSettingsItems(context),
             Space.ym!,
             customElevatedButton(
                 width: double.infinity,
@@ -89,6 +86,7 @@ class SettingsScreen extends StatelessWidget {
                     (route) => false,
                   );
                 }),
+            Space.yf(),
           ],
         ),
       ),

@@ -19,6 +19,17 @@ sealed class AppRouter {
   static const String checkout = '/checkout';
   static const String successfulBooking = '/successfulBooking';
   static const String search = '/search';
+  static const String aboutUs = '/aboutUs';
+  static const String terms = '/terms';
+  static const String privacy = '/privacy';
+  static const String contactUs = '/contactUs';
+
+  static const List<String> aboutTaps = [
+    terms,
+    privacy,
+    aboutUs,
+    contactUs,
+  ];
 
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -64,6 +75,14 @@ sealed class AppRouter {
             builder: (_) => const SuccessfulBookingScreen());
       case search:
         return MaterialPageRoute(builder: (_) => const SearchScreen());
+      case aboutUs:
+        return MaterialPageRoute(builder: (_) => const AboutUsScreen());
+      case privacy:
+        return MaterialPageRoute(builder: (_) => const PrivacyScreen());
+      case terms:
+        return MaterialPageRoute(builder: (_) => const TermsScreen());
+      case contactUs:
+        return MaterialPageRoute(builder: (_) => const ContactUsScreen());
       default:
         throw const RouteException('Route not found!');
     }

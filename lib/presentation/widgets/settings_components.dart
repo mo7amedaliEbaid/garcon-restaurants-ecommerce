@@ -10,6 +10,18 @@ Widget arrowIcon() {
   );
 }
 
+List<Widget> buildSettingsItems(BuildContext context) {
+  return List.generate(AppStrings.aboutTapsStrings.length, (index) {
+    return settingsItem(
+      title: AppStrings.aboutTapsStrings[index],
+      endWidget: arrowIcon(),
+      onTap: () {
+        Navigator.of(context).pushNamed(AppRouter.aboutTaps[index]);
+      },
+    );
+  });
+}
+
 Widget settingsItem(
     {required String title,
     required Widget endWidget,
