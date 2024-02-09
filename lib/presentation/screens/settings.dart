@@ -71,6 +71,30 @@ class SettingsScreen extends StatelessWidget {
             ),
             Space.yf(1.2),
             ...buildSettingsItems(context),
+            Space.y1!,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (var i = 0; i < AppStrings.socialUrls.length; i++)
+                  Padding(
+                    padding: Space.hf(.3),
+                    child: GestureDetector(
+                      onTap: () async {
+                        await UrlFunctions.openUrl(AppStrings.socialUrls[i]);
+                      },
+                      child: SvgPicture.asset(AppAssets.socialAssets[i]),
+                    ),
+                  ),
+              ],
+            ),
+            Space.y!,
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                "v 1.0.0",
+                style: AppText.b1b,
+              ),
+            ),
             Space.ym!,
             customElevatedButton(
                 width: double.infinity,
@@ -93,3 +117,5 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 }
+
+

@@ -27,3 +27,6 @@ export 'observer/bloc_observer.dart';
 
 //validator
 export 'validator/validator.dart';
+
+//functions
+export 'functions/url_launcher.dart';

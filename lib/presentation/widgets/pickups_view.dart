@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garcon/models/models.dart';
@@ -29,6 +28,7 @@ class _PickUpsViewState extends State<PickUpsView> {
           widget.restaurant.pickups,
           widget.restaurant.categories.first,
         );
+
     super.initState();
   }
 
@@ -90,7 +90,8 @@ class _PickUpsViewState extends State<PickUpsView> {
               return const SizedBox.shrink();
             }
           },
-        )
+        ),
+        Space.yf(4)
       ],
     );
   }

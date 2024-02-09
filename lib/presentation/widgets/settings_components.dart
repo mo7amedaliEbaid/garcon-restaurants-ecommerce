@@ -52,3 +52,14 @@ Widget settingsItem(
     ],
   );
 }
+Widget verseText({required String text}) {
+  return Padding(
+    padding: Space.h1!,
+    child: Text(
+      text,
+      style: AppText.b2!.copyWith(
+        color: AppColors.greyColor,
+      ),
+    ),
+  );
+}

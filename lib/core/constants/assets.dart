@@ -30,10 +30,18 @@ sealed class AppAssets {
   static const String purpleCurve = "assets/svg/purpleCurve.svg";
   static const String arrowForward = "assets/svg/arrowForward.svg";
   static const String notifications = "assets/svg/notifications.svg";
+  static const String twitter = "assets/svg/twitter.svg";
+  static const String snap = "assets/svg/snap.svg";
+  static const String instagram = "assets/svg/insta.svg";
 
   static const List<String> restaurantTaps = [
     book,
     drive,
     info,
+  ];
+  static const List<String> socialAssets = [
+    instagram,
+    twitter,
+    snap,
   ];
 }

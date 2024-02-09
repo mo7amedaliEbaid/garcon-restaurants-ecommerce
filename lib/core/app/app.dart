@@ -92,6 +92,19 @@ class MyApp extends StatelessWidget {
               reservationsRepository: ReservationRepository(),
             ),
           ),
+          BlocProvider(
+            create: (context) => CartCubit(
+              CartRepository(),
+            ),
+          ),
+          BlocProvider(
+            lazy: false,
+            create: (context) => AboutUsBloc(
+              InfoRepo(),
+            )..add(
+                GetAboutUsEvent(),
+              ),
+          ),
         ],
         child: MaterialApp(
           title: 'Garcon',
