@@ -27,4 +27,7 @@ sealed class AppStrings {
 
   static const String aboutUsImage =
       "https://media.licdn.com/dms/image/D4E12AQHveXn1Mzk_DQ/article-cover_image-shrink_720_1280/0/1686234056540?e=2147483647&v=beta&t=O41Ht0rGxmf6fofKh6IAuQeCwBZVObl9go2zY8ceG3s";
+
+  static const List<String> daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
 }

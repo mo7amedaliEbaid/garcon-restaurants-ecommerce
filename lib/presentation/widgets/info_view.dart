@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
 import 'package:garcon/models/models.dart';
@@ -94,7 +95,40 @@ class InfoView extends StatelessWidget {
               ),
             ],
           ),
-          Space.yf(),
+          Space.yf(.5),
+          ...AppStrings.daysOfWeek.map(
+            (day) => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  day,
+                  style: AppText.b1,
+                ),
+                day == "Friday"
+                    ? Text(
+                        "OFF",
+                        style: AppText.b1?.copyWith(color: AppColors.deepRed),
+                      )
+                    : Text("11 AM - 11 PM", style: AppText.b1)
+              ],
+            ),
+          ),
+          Space.yf(1.5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Follow Us:  ",
+                style: AppText.h2b,
+              ),
+              GestureDetector(
+                  onTap: () async {
+                    await UrlFunctions.openUrl(AppStrings.linkedUrl);
+                  },
+                  child: SvgPicture.asset(AppAssets.instagram)),
+            ],
+          ),
+          Space.yf(1.5),
         ],
       ),
     );
