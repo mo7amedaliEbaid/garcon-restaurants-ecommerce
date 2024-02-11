@@ -10,13 +10,13 @@ part 'about_us_event.dart';
 part 'about_us_state.dart';
 
 class AboutUsBloc extends Bloc<AboutUsEvent, AboutUsState> {
-  final BaseInfoRepository _infoRepository;
+  final BaseAboutRepository _aboutRepository;
 
-  AboutUsBloc(this._infoRepository) : super(AboutUsInitial()) {
+  AboutUsBloc(this._aboutRepository) : super(AboutUsInitial()) {
     on<GetAboutUsEvent>((event, emit) async {
       emit(AboutUsLoading());
       try {
-        final aboutUs = await _infoRepository.getAboutUs().first;
+        final aboutUs = await _aboutRepository.getAboutUs().first;
         emit(AboutUsLoaded(aboutUs));
       } catch (e) {
         emit(AboutUsError('Failed to fetch about info: $e'));

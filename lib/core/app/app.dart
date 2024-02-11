@@ -100,7 +100,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             lazy: false,
             create: (context) => AboutUsBloc(
-              InfoRepo(),
+              AboutRepo(),
             )..add(
                 GetAboutUsEvent(),
               ),

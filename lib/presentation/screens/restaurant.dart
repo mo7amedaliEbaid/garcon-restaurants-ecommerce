@@ -40,7 +40,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
     List<Widget> views = [
       BookingView(restaurant: widget.restaurant),
       PickUpsView(restaurant: widget.restaurant),
-      const SizedBox.shrink()
+      InfoView(restaurant: widget.restaurant),
     ];
     return Scaffold(
       appBar: customAppBar(

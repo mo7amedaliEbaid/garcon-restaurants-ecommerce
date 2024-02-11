@@ -16,3 +16,4 @@ export 'widgets/pickup_item.dart';
 export 'widgets/booking_view.dart';
 export 'widgets/settings_components.dart';
 export 'widgets/pickups_notched_container.dart';
+export 'widgets/info_view.dart';

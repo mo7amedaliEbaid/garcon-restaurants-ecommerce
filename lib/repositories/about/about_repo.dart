@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../models/models.dart';
 
-part 'base_info_repo.dart';
+part 'base_about_repo.dart';
 
-class InfoRepo extends BaseInfoRepository {
+class AboutRepo extends BaseAboutRepository {
   final FirebaseFirestore _firebaseFirestore;
 
-  InfoRepo({FirebaseFirestore? firebaseFirestore})
+  AboutRepo({FirebaseFirestore? firebaseFirestore})
       : _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
   @override
