@@ -1,12 +1,13 @@
-# Garcon - Restaurants Management App
+# Garcon - Restaurants Management App 🍽
 Garcon is a Flutter-based restaurant management app designed to streamline various aspects of restaurant operations. The app provides features such as meal pickups, booking management, and essential information sections. The user interface and experience have been crafted by a professional UI/UX designer using Adobe XD. The app's backend is powered by Firebase, offering a robust and scalable solution.
 
 ## Functionality
 - Bloc pattern for efficient state management
-- Search and filter functionality
-- Meal pickups management
+- Responsive Design
+- 🔍 Search and filter functionality
+- 🧆 Meal pickups management
 - Seamless checkout process
-- Shopping cart management
+- 🛒 Shopping cart management
 - User settings customization
 - Sign in with email and password
 - Sign up with email and password
