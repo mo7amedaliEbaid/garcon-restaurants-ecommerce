@@ -12,7 +12,7 @@ class GetReservationsCubit extends Cubit<GetReservationsState> {
   GetReservationsCubit({required this.reservationsRepository})
       : super(GetReservationsInitial());
 
-  void getKids(String userId) {
+  void getReservations(String userId) {
     emit(GetReservationLoading());
     reservationsRepository.getReservations(userId).listen(
       (reservations) {

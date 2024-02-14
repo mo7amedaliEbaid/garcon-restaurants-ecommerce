@@ -51,56 +51,12 @@ class CartRepository implements BaseCartRepository {
     });
   }
 
- /* @override
+  @override
   Stream<List<PickUp>> getCart(String userId) async* {
     final userDocRef = _firebaseFirestore.collection('cart').doc(userId);
 
     final StreamController<List<PickUp>> controller =
         StreamController<List<PickUp>>();
-
-    userDocRef.snapshots().listen((snapshot) async {
-      log('Snapshot data: ${snapshot.data()}');
-
-      if (snapshot.exists) {
-        final pickupIds = List<String>.from(snapshot.get('pickups') ?? []);
-        log('Pickup IDs: $pickupIds');
-
-        final List<PickUp> pickUps = [];
-
-        for (final pickupId in pickupIds.map((id) => id.toString())) {
-          final pickupQuerySnapshot = await _firebaseFirestore
-              .collection('pickups')
-              .where('id', isEqualTo: pickupId)
-              .snapshots()
-              .first;
-
-          final pickUps = pickupQuerySnapshot.docs.map((doc) {
-            return PickUp.fromSnapShot(doc);
-          }).toList();
-
-          if (pickUps.isNotEmpty) {
-            final pickUp = pickUps.first;
-            log('Pickup Description for $pickupId: ${pickUp.description}');
-            pickUps.add(pickUp);
-          }
-        }
-
-        log('Cart Items: $pickUps');
-
-        controller.add(pickUps);
-      } else {
-        log('User document does not exist.');
-        controller.add([]);
-      }
-    });
-
-    yield* controller.stream;
-  }*/
-  @override
-  Stream<List<PickUp>> getCart(String userId) async* {
-    final userDocRef = _firebaseFirestore.collection('cart').doc(userId);
-
-    final StreamController<List<PickUp>> controller = StreamController<List<PickUp>>();
 
     userDocRef.snapshots().listen((snapshot) async {
       log('Snapshot data: ${snapshot.data()}');
@@ -150,4 +106,18 @@ class CartRepository implements BaseCartRepository {
       return false;
     }
   }
+
+  @override
+  Future<void> removeEntireCart(String userId) async {
+    final userDocRef = _firebaseFirestore.collection('cart').doc(userId);
+
+    try {
+      await userDocRef.delete();
+      log('Cart for user $userId successfully deleted.');
+    } on FirebaseException catch (error) {
+      log('Error deleting cart: ${error.code} - ${error.message}');
+      // Handle error (e.g., throw an exception, return a specific error message)
+    }
+  }
+
 }

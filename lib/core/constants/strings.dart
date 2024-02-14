@@ -8,6 +8,11 @@ sealed class AppStrings {
     "Info",
   ];
 
+  static const List<String> reservationTaps = [
+    "Bookings",
+    "Preorders",
+  ];
+
   static const List<String> aboutTapsStrings = [
     "Terms & Conditions",
     "Privacy Policy",

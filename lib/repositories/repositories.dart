@@ -5,3 +5,4 @@ export 'pickups/pickups_repo.dart';
 export 'reservation/reservation_repo.dart';
 export 'about/about_repo.dart';
 export 'cart/cart_repo.dart';
+export 'orders/orders_repo.dart';

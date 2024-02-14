@@ -8,4 +8,6 @@ abstract class BaseCartRepository {
   Stream<List<PickUp>> getCart(String userId);
 
   Future<bool> isInCart(String userId, String pickupId);
+
+  Future<void> removeEntireCart(String userId);
 }

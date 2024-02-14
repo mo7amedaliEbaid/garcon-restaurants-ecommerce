@@ -11,6 +11,7 @@ import 'package:garcon/presentation/widgets.dart';
 import '../../application/application.dart';
 
 class RestaurantScreen extends StatefulWidget {
+
   const RestaurantScreen({super.key, required this.restaurant});
 
   final Restaurant restaurant;
