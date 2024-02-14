@@ -17,3 +17,4 @@ export 'cubits/get_reservations/get_reservation_cubit.dart';
 export 'cubits/search/search_cubit.dart';
 export 'cubits/navigation_cubit/navigation_cubit.dart';
 export 'cubits/cart/cart_cubit.dart';
+export 'cubits/place_order/place_order_cubit.dart';

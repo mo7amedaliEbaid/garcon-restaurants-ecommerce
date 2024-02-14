@@ -105,6 +105,11 @@ class MyApp extends StatelessWidget {
                 GetAboutUsEvent(),
               ),
           ),
+          BlocProvider(
+            create: (context) => PlaceOrderCubit(
+              ordersRepository: OrdersRepository(),
+            ),
+          ),
         ],
         child: MaterialApp(
           title: 'Garcon',
