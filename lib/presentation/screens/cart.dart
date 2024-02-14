@@ -16,6 +16,10 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+
+  List<String> prices = [];
+
+
   @override
   void initState() {
     context.read<CartCubit>().loadCart(FirebaseAuth.instance.currentUser!.uid);
@@ -38,7 +42,7 @@ class _CartScreenState extends State<CartScreen> {
                 return Column(
                   children: [
                     SizedBox(
-                      height: AppDimensions.normalize(180),
+                      height: AppDimensions.normalize(190),
                       child: ListView.separated(
                         itemCount: state.pickUps.length,
                         itemBuilder: (context, index) {
@@ -81,9 +85,34 @@ class _CartScreenState extends State<CartScreen> {
                   ],
                 );
               } else if (state is CartLoaded && state.pickUps.isEmpty) {
-                return Text("empty");
+                return const Text("empty");
               } else {
-                return Text("error");
+                return const Text("error");
+              }
+            },
+          ),
+          Space.yf(1.5),
+          BlocBuilder<CartCubit, CartState>(
+            builder: (context, state) {
+              if (state is CartLoaded && state.pickUps.isNotEmpty) {
+                for (var i = 0; i < state.pickUps.length; i++) {
+                  prices.add(state.pickUps[i].price);
+                }
+                double totalPrice =
+                CalculateTotalPrice.calculateTotalPrice(prices);
+                return Column(
+                  children: [
+                    Text("Total Amount",style: AppText.h3b,),
+                    Space.yf(.2),
+                    Text(
+                      "$totalPrice KWD",
+                      style: AppText.h1b?.copyWith(color: AppColors.deepRed),
+                    ),
+                  ],
+                );
+
+              } else {
+                return const SizedBox.shrink();
               }
             },
           ),
