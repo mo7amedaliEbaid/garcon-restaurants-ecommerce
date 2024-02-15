@@ -11,7 +11,6 @@ import 'package:garcon/presentation/widgets.dart';
 import '../../application/application.dart';
 
 class RestaurantScreen extends StatefulWidget {
-
   const RestaurantScreen({super.key, required this.restaurant});
 
   final Restaurant restaurant;
@@ -174,7 +173,10 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
               right: 0,
               left: 0,
               child: selectedTapIndex == 1
-                  ? pickupsNotchedContainer(context)
+                  ? pickupsNotchedContainer(
+                      context: context,
+                      restaurant: widget.restaurant,
+                    )
                   : const SizedBox.shrink())
         ],
       ),

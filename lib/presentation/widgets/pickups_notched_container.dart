@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garcon/application/application.dart';
+import 'package:garcon/models/restaurant.dart';
 
 import '../../configs/configs.dart';
 import '../../core/core.dart';
 
-Widget pickupsNotchedContainer(BuildContext context) {
+Widget pickupsNotchedContainer({
+  required BuildContext context,
+  required Restaurant restaurant,
+}) {
   List<String> prices = [];
   return Stack(
     clipBehavior: Clip.none,
     children: [
       GestureDetector(
-        onTap: (){
-          Navigator.of(context).pushNamed(AppRouter.cart);
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            AppRouter.cart,
+            arguments: restaurant,
+          );
         },
         child: Container(
           height: AppDimensions.normalize(20),

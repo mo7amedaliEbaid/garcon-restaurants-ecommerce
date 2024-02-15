@@ -16,7 +16,8 @@ sealed class AppRouter {
   static const String choose = '/choose';
   static const String filteredRestaurants = '/filteredRestaurants';
   static const String photoView = '/photoView';
-  static const String checkout = '/checkout';
+  static const String reservationCheckout = '/reservationCheckout';
+  static const String pickupsCheckout = '/pickupsCheckout';
   static const String successfulBooking = '/successfulBooking';
   static const String search = '/search';
   static const String aboutUs = '/aboutUs';
@@ -66,10 +67,12 @@ sealed class AppRouter {
         return MaterialPageRoute(
           builder: (_) => PhotoViewScreen(image: image),
         );
-      case checkout:
+      case reservationCheckout:
         Reservation reservation = routeSettings.arguments as Reservation;
         return MaterialPageRoute(
-          builder: (_) => CheckoutScreen(reservation: reservation),
+          builder: (_) => ReservationCheckoutScreen(
+            reservation: reservation,
+          ),
         );
       case successfulBooking:
         return MaterialPageRoute(
@@ -85,7 +88,24 @@ sealed class AppRouter {
       case contactUs:
         return MaterialPageRoute(builder: (_) => const ContactUsScreen());
       case cart:
-        return MaterialPageRoute(builder: (_) => const CartScreen());
+        Restaurant restaurant = routeSettings.arguments as Restaurant;
+        return MaterialPageRoute(
+          builder: (_) => CartScreen(
+            restaurant: restaurant,
+          ),
+        );
+      case pickupsCheckout:
+        final Map<String, dynamic> arguments =
+            routeSettings.arguments as Map<String, dynamic>;
+        final Restaurant restaurant = arguments['restaurant'] as Restaurant;
+        final String amount = arguments['amount'] as String;
+
+        return MaterialPageRoute(
+          builder: (_) => PickupsCheckout(
+            restaurant: restaurant,
+            amount: amount,
+          ),
+        );
       default:
         throw const RouteException('Route not found!');
     }

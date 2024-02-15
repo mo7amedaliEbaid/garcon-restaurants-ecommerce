@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:garcon/configs/app_dimensions.dart';
-import 'package:garcon/configs/app_typography.dart';
-import 'package:garcon/configs/space.dart';
-import 'package:garcon/core/constants/colors.dart';
-import 'package:garcon/core/extensions/extensions.dart';
-import 'package:garcon/core/router/router.dart';
+import 'package:garcon/configs/configs.dart';
+import 'package:garcon/core/core.dart';
 import 'package:garcon/models/models.dart';
 import 'package:garcon/presentation/widgets.dart';
-
 import '../../application/application.dart';
 
-class CheckoutScreen extends StatelessWidget {
-  const CheckoutScreen({super.key, required this.reservation});
+class ReservationCheckoutScreen extends StatelessWidget {
+  const ReservationCheckoutScreen({super.key, required this.reservation});
 
   final Reservation reservation;
 

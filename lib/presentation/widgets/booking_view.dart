@@ -237,7 +237,7 @@ class _BookingViewState extends State<BookingView> {
                   date: selectedDate.toString().substring(0, 10));
 
               Navigator.of(context)
-                  .pushNamed(AppRouter.checkout, arguments: reservation);
+                  .pushNamed(AppRouter.reservationCheckout, arguments: reservation);
             })
       ],
     );

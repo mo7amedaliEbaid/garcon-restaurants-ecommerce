@@ -2,23 +2,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garcon/application/application.dart';
-import 'package:garcon/configs/app_dimensions.dart';
-import 'package:garcon/configs/app_typography.dart';
-import 'package:garcon/configs/space.dart';
+import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
+import 'package:garcon/models/restaurant.dart';
 import 'package:garcon/presentation/widgets.dart';
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({super.key});
+  const CartScreen({super.key, required this.restaurant});
+
+  final Restaurant restaurant;
 
   @override
   State<CartScreen> createState() => _CartScreenState();
 }
 
 class _CartScreenState extends State<CartScreen> {
-
   List<String> prices = [];
-
 
   @override
   void initState() {
@@ -28,6 +27,7 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double totalPrice = CalculateTotalPrice.calculateTotalPrice(prices);
     return Scaffold(
       appBar: customAppBar(
         context: context,
@@ -62,9 +62,11 @@ class _CartScreenState extends State<CartScreen> {
                       height: AppDimensions.normalize(16),
                       margin: Space.hf(2),
                       decoration: BoxDecoration(
-                          border: Border.all(color: AppColors.deepRed),
-                          borderRadius: BorderRadius.circular(
-                              AppDimensions.normalize(5))),
+                        border: Border.all(color: AppColors.deepRed),
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.normalize(5),
+                        ),
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -81,7 +83,6 @@ class _CartScreenState extends State<CartScreen> {
                         ],
                       ),
                     ),
-
                   ],
                 );
               } else if (state is CartLoaded && state.pickUps.isEmpty) {
@@ -98,11 +99,13 @@ class _CartScreenState extends State<CartScreen> {
                 for (var i = 0; i < state.pickUps.length; i++) {
                   prices.add(state.pickUps[i].price);
                 }
-                double totalPrice =
-                CalculateTotalPrice.calculateTotalPrice(prices);
+
                 return Column(
                   children: [
-                    Text("Total Amount",style: AppText.h3b,),
+                    Text(
+                      "Total Amount",
+                      style: AppText.h3b,
+                    ),
                     Space.yf(.2),
                     Text(
                       "$totalPrice KWD",
@@ -110,7 +113,6 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   ],
                 );
-
               } else {
                 return const SizedBox.shrink();
               }
@@ -125,7 +127,15 @@ class _CartScreenState extends State<CartScreen> {
               borderRadius: 0,
               text: "Proceed to Checkout",
               textStyle: AppText.h3b!.copyWith(color: Colors.white),
-              onPressed: () {})
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  AppRouter.pickupsCheckout,
+                  arguments: {
+                    'restaurant': widget.restaurant,
+                    'amount': totalPrice.toString()
+                  },
+                );
+              })
         ],
       ),
     );
