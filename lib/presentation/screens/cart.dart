@@ -27,116 +27,119 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double totalPrice = CalculateTotalPrice.calculateTotalPrice(prices);
     return Scaffold(
       appBar: customAppBar(
         context: context,
         title: "Cart",
       ),
-      body: Column(
-        children: [
-          Space.yf(2.5),
-          BlocBuilder<CartCubit, CartState>(
-            builder: (context, state) {
-              if (state is CartLoaded && state.pickUps.isNotEmpty) {
-                return Column(
-                  children: [
-                    SizedBox(
-                      height: AppDimensions.normalize(190),
-                      child: ListView.separated(
-                        itemCount: state.pickUps.length,
-                        itemBuilder: (context, index) {
-                          return pickupItem(
-                            context: context,
-                            pickUp: state.pickUps[index],
-                          );
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return Space.yf();
-                        },
-                      ),
-                    ),
-                    Space.yf(.5),
-                    Container(
-                      width: double.infinity,
-                      height: AppDimensions.normalize(16),
-                      margin: Space.hf(2),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.deepRed),
-                        borderRadius: BorderRadius.circular(
-                          AppDimensions.normalize(5),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Space.yf(2.5),
+            BlocBuilder<CartCubit, CartState>(
+              builder: (context, state) {
+                if (state is CartLoaded && state.pickUps.isNotEmpty) {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: AppDimensions.normalize(190),
+                        child: ListView.separated(
+                          itemCount: state.pickUps.length,
+                          itemBuilder: (context, index) {
+                            return pickupItem(
+                              context: context,
+                              pickUp: state.pickUps[index],
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return Space.yf();
+                          },
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Icons.add_circle_outline_rounded,
-                            color: AppColors.deepRed,
+                      Space.yf(.5),
+                      Container(
+                        width: double.infinity,
+                        height: AppDimensions.normalize(16),
+                        margin: Space.hf(2),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppColors.deepRed),
+                          borderRadius: BorderRadius.circular(
+                            AppDimensions.normalize(5),
                           ),
-                          Space.yf(.3),
-                          Text(
-                            "Add More Meals",
-                            style:
-                                AppText.h3?.copyWith(color: AppColors.deepRed),
-                          )
-                        ],
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.add_circle_outline_rounded,
+                              color: AppColors.deepRed,
+                            ),
+                            Space.yf(.3),
+                            Text(
+                              "Add More Meals",
+                              style: AppText.h3
+                                  ?.copyWith(color: AppColors.deepRed),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                );
-              } else if (state is CartLoaded && state.pickUps.isEmpty) {
-                return const Text("empty");
-              } else {
-                return const Text("error");
-              }
-            },
-          ),
-          Space.yf(1.5),
-          BlocBuilder<CartCubit, CartState>(
-            builder: (context, state) {
-              if (state is CartLoaded && state.pickUps.isNotEmpty) {
-                for (var i = 0; i < state.pickUps.length; i++) {
-                  prices.add(state.pickUps[i].price);
+                    ],
+                  );
+                } else if (state is CartLoaded && state.pickUps.isEmpty) {
+                  return const Text("empty");
+                } else {
+                  return const Text("error");
                 }
+              },
+            ),
+            Space.yf(1.5),
+            BlocBuilder<CartCubit, CartState>(
+              builder: (context, state) {
+                if (state is CartLoaded && state.pickUps.isNotEmpty) {
+                  for (var i = 0; i < state.pickUps.length; i++) {
+                    prices.add(state.pickUps[i].price);
+                  }
+                  double totalPrice =
+                      CalculateTotalPrice.calculateTotalPrice(prices);
 
-                return Column(
-                  children: [
-                    Text(
-                      "Total Amount",
-                      style: AppText.h3b,
-                    ),
-                    Space.yf(.2),
-                    Text(
-                      "$totalPrice KWD",
-                      style: AppText.h1b?.copyWith(color: AppColors.deepRed),
-                    ),
-                  ],
-                );
-              } else {
-                return const SizedBox.shrink();
-              }
-            },
-          ),
-          Space.ym!,
-          customElevatedButton(
-              withArrow: true,
-              width: double.infinity,
-              height: AppDimensions.normalize(20),
-              color: AppColors.deepRed,
-              borderRadius: 0,
-              text: "Proceed to Checkout",
-              textStyle: AppText.h3b!.copyWith(color: Colors.white),
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  AppRouter.pickupsCheckout,
-                  arguments: {
-                    'restaurant': widget.restaurant,
-                    'amount': totalPrice.toString()
-                  },
-                );
-              })
-        ],
+                  return Column(
+                    children: [
+                      Text(
+                        "Total Amount",
+                        style: AppText.h3b,
+                      ),
+                      Space.yf(.2),
+                      Text(
+                        "$totalPrice KWD",
+                        style: AppText.h1b?.copyWith(color: AppColors.deepRed),
+                      ),
+                      Space.yf(1.8),
+                      customElevatedButton(
+                          withArrow: true,
+                          width: double.infinity,
+                          height: AppDimensions.normalize(22),
+                          color: AppColors.deepRed,
+                          borderRadius: 0,
+                          text: "Proceed to Checkout",
+                          textStyle: AppText.h3b!.copyWith(color: Colors.white),
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(
+                              AppRouter.pickupsCheckout,
+                              arguments: {
+                                'restaurant': widget.restaurant,
+                                'amount': totalPrice.toString()
+                              },
+                            );
+                          }),
+                    ],
+                  );
+                } else {
+                  return const SizedBox.shrink();
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
