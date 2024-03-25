@@ -49,6 +49,9 @@ dependencies:
   photo_view:
   url_launcher:
   meta:
+  flutter_stripe:
+  dio:
+  flutter_dotenv:
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +79,7 @@ flutter:
   assets:
     - assets/png/
     - assets/svg/
+    - .env
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

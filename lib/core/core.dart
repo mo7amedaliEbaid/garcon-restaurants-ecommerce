@@ -5,6 +5,7 @@ export 'router/router.dart';
 export 'constants/strings.dart';
 export 'constants/assets.dart';
 export 'constants/colors.dart';
+export 'constants/env.dart';
 
 //app
 export 'app/app.dart';

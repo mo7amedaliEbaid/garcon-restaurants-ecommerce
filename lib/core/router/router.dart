@@ -25,6 +25,7 @@ sealed class AppRouter {
   static const String privacy = '/privacy';
   static const String contactUs = '/contactUs';
   static const String cart = '/cart';
+  static const String payment = '/payment';
 
   static const List<String> aboutTaps = [
     terms,
@@ -105,6 +106,10 @@ sealed class AppRouter {
             restaurant: restaurant,
             amount: amount,
           ),
+        );
+      case payment:
+        return MaterialPageRoute(
+          builder: (_) => const PaymentScreen(),
         );
       default:
         throw const RouteException('Route not found!');

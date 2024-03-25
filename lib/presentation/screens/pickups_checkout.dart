@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
+import 'package:garcon/core/functions/convert_currency.dart';
 import 'package:garcon/models/models.dart';
 import 'package:garcon/presentation/widgets.dart';
 
@@ -166,15 +167,31 @@ class _PickupsCheckoutState extends State<PickupsCheckout> {
             ),
           ),
           Space.ym!,
-          customElevatedButton(
-              withArrow: true,
-              width: double.infinity,
-              height: AppDimensions.normalize(20),
-              color: AppColors.deepRed,
-              borderRadius: 0,
-              text: "Proceed to Payment",
-              textStyle: AppText.h3b!.copyWith(color: Colors.white),
-              onPressed: () {}),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              customElevatedButton(
+                  width: AppDimensions.normalize(65),
+                  height: AppDimensions.normalize(20),
+                  color: AppColors.deepRed,
+                  borderRadius: AppDimensions.normalize(7),
+                  text:
+                      "Pay ${convertKwdToUsd(double.parse(widget.amount))} USD",
+                  textStyle: AppText.b1b!.copyWith(color: Colors.white),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(AppRouter.payment);
+                  }),
+              customOutlinedButton(
+                  width: AppDimensions.normalize(65),
+                  height: AppDimensions.normalize(20),
+                  borderColor: AppColors.darkRed,
+                  borderRadius: AppDimensions.normalize(7),
+                  text: "Pay On Pickup",
+                  textStyle: AppText.b1b!.copyWith(color: AppColors.darkRed),
+                  onPressed: () {})
+            ],
+          ),
+          Space.yf()
         ],
       ),
     );
