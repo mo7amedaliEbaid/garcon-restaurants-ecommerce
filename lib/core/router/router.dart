@@ -107,10 +107,7 @@ sealed class AppRouter {
             amount: amount,
           ),
         );
-      case payment:
-        return MaterialPageRoute(
-          builder: (_) => const PaymentScreen(),
-        );
+
       default:
         throw const RouteException('Route not found!');
     }

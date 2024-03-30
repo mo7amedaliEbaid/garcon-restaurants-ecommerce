@@ -110,6 +110,9 @@ class MyApp extends StatelessWidget {
               ordersRepository: OrdersRepository(),
             ),
           ),
+          BlocProvider(
+            create: (context) => PaymentCubit(),
+          ),
         ],
         child: MaterialApp(
           title: 'Garcon',

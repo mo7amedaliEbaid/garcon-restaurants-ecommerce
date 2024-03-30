@@ -13,13 +13,13 @@ class PaymentCubit extends Cubit<PaymentState> {
 
   PaymentCubit() : super(PaymentInitial());
 
-  void createPaymentIntent() async {
+  void createPaymentIntent({required String amount}) async {
     emit(PaymentProcessing());
     try {
       Response response = await dio.post(
         'https://api.stripe.com/v1/payment_intents',
         data: {
-          'amount': '5000',
+          'amount': '100',
           'currency': 'USD',
           'payment_method_types[]': 'card'
         },

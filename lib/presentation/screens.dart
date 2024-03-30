@@ -22,4 +22,3 @@ export 'screens/terms.dart';
 export 'screens/privacy.dart';
 export 'screens/cart.dart';
 export 'screens/pickups_checkout.dart';
-export 'screens/payment.dart';

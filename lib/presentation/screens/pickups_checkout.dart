@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:garcon/application/application.dart';
 import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
 import 'package:garcon/core/functions/convert_currency.dart';
@@ -179,7 +181,10 @@ class _PickupsCheckoutState extends State<PickupsCheckout> {
                       "Pay ${convertKwdToUsd(double.parse(widget.amount))} USD",
                   textStyle: AppText.b1b!.copyWith(color: Colors.white),
                   onPressed: () {
-                    Navigator.of(context).pushNamed(AppRouter.payment);
+                    //    Navigator.of(context).pushNamed(AppRouter.payment);
+                    context.read<PaymentCubit>().createPaymentIntent(
+                          amount:'${convertKwdToUsd(double.parse(widget.amount))}',
+                        );
                   }),
               customOutlinedButton(
                   width: AppDimensions.normalize(65),
