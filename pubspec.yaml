@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg:
   cached_network_image:
-  connectivity_plus:
+  connectivity_plus: ^5.0.2
   flutter_bloc:
   firebase_core:
   cloud_firestore:
@@ -50,6 +50,7 @@ dependencies:
   url_launcher:
   meta:
   flutter_stripe:
+#  flutter_stripe: ^5.0.0
   dio:
   flutter_dotenv:
 
