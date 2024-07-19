@@ -119,7 +119,7 @@ class _CartScreenState extends State<CartScreen> {
                         "$totalPrice KWD",
                         style: AppText.h1b?.copyWith(color: AppColors.deepRed),
                       ),
-                      Space.yf(1.8),
+                      Space.yf(9.8),
                       customElevatedButton(
                           withArrow: true,
                           width: double.infinity,
