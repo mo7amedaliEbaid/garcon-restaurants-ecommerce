@@ -1,5 +1,5 @@
 # Garcon - Restaurants Management App 🍽
-Garcon is a Flutter-based restaurant management app designed to streamline various aspects of restaurant operations. The app provides features such as meal pickups, booking management, and essential information sections. The user interface and experience have been crafted by a professional UI/UX designer using Adobe XD. The app's backend is powered by Firebase, offering a robust and scalable solution.
+Garcon is a Flutter-based restaurant management app designed to streamline various aspects of restaurant operations. The app provides features such as meal pickups, Stripe Payment Integration, booking management, and essential information sections. The user interface and experience have been crafted by a professional UI/UX designer using Adobe XD. The app's backend is powered by Firebase, offering a robust and scalable solution.
 
 ## Functionality
 - Bloc pattern for efficient state management
@@ -15,6 +15,10 @@ Garcon is a Flutter-based restaurant management app designed to streamline vario
 - Change Password
 - Edit Profile
 - Add a reservation
+- Pay Online 
+- Create an Order
+- Stripe Integration
+
 
 ## Directory Structure
 
@@ -98,4 +102,10 @@ More ScreenShots [Here](https://github.com/mo7amedaliEbaid/garcon/blob/6d3d4b77f
   <img src="https://github.com/mo7amedaliEbaid/garcon/blob/9ef8c0432fb561a88bb49289e4bd6e6102e91c32/screenshots/info1.jpg" width="180" alt="info1"/>
   <img src="https://github.com/mo7amedaliEbaid/garcon/blob/9ef8c0432fb561a88bb49289e4bd6e6102e91c32/screenshots/photoview.jpg" width="180" alt="photoview"/>
   <img src="https://github.com/mo7amedaliEbaid/garcon/blob/9ef8c0432fb561a88bb49289e4bd6e6102e91c32/screenshots/settings.jpg" width="180" alt="settings"/>
+  <img src="https://github.com/mo7amedaliEbaid/garcon/blob/7ddc400f8507ffd78a4c48b2a63a1dca12b7be52/screenshots/stripe.jpg" width="180" alt="stripe"/>
+  <img src="https://github.com/mo7amedaliEbaid/garcon/blob/1b4bdbd9767eb21b90a4830b90146afa756fe6d8/screenshots/reservasions.jpg" width="180" alt="reservasions"/>
+  <img src="https://github.com/mo7amedaliEbaid/garcon/blob/1b4bdbd9767eb21b90a4830b90146afa756fe6d8/screenshots/preorders.jpg" width="180" alt="preorders"/>
+  <img src="https://github.com/mo7amedaliEbaid/garcon/blob/1b4bdbd9767eb21b90a4830b90146afa756fe6d8/screenshots/pickup2.jpg" width="180" alt="pickups2"/>
+  <img src="https://github.com/mo7amedaliEbaid/garcon/blob/1b4bdbd9767eb21b90a4830b90146afa756fe6d8/screenshots/cart.jpg" width="180" alt="cart"/>
+  <img src="https://github.com/mo7amedaliEbaid/garcon/blob/1b4bdbd9767eb21b90a4830b90146afa756fe6d8/screenshots/pickup_order_checkout.jpg" width="180" alt="pickOrder"/>
 </p>
