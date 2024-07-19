@@ -32,3 +32,4 @@ export 'validator/validator.dart';
 //functions
 export 'functions/url_launcher.dart';
 export 'functions/calculate_total_price.dart';
+export 'functions/convert_currency.dart';

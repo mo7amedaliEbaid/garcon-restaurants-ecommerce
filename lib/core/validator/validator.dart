@@ -33,6 +33,7 @@ class Validators {
     }
     return null;
   }
+
   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) return 'First name is required';
     if (value.length < 2) {
@@ -40,6 +41,17 @@ class Validators {
     }
     if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value)) {
       return 'User name must be alphabetic';
+    }
+    return null;
+  }
+
+  String? validateCustomerName(String? value) {
+    if (value == null || value.isEmpty) return 'Customer name is required';
+    if (value.length < 2) {
+      return 'Customer name must be at least 2 characters long';
+    }
+    if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value)) {
+      return 'Customer name must be alphabetic';
     }
     return null;
   }

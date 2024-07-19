@@ -13,11 +13,11 @@ class ReservationsView extends StatelessWidget {
     return BlocBuilder<GetReservationsCubit, GetReservationsState>(
       builder: (context, state) {
         if (state is GetReservationsLoaded && state.reservations.isNotEmpty) {
-          return SizedBox(
-            height: AppDimensions.normalize(200),
+          return Expanded(
+            //height: AppDimensions.normalize(200),
             child: ListView.separated(
               itemCount: state.reservations.length,
-              padding: Space.hf(1.5),
+              padding: Space.all(1.5, 1),
               itemBuilder: (context, index) {
                 return reservationItem(
                   reservation: state.reservations[index],

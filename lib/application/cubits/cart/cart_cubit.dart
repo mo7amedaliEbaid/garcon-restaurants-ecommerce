@@ -39,4 +39,21 @@ class CartCubit extends Cubit<CartState> {
 
     loadCart(userId);
   }
+
+  void removeCart(String userId) async {
+    try {
+      await _repository.removeEntireCart(userId);
+      emit(
+        const CartLoaded(
+          [],
+        ),
+      );
+    } catch (e) {
+      emit(
+        CartError(
+          e.toString(),
+        ),
+      );
+    }
+  }
 }

@@ -29,7 +29,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
   Widget build(BuildContext context) {
     List<Widget> views = [
       const ReservationsView(),
-      PreOrdersView(),
+      const PreOrdersView(),
     ];
     return Scaffold(
       appBar: customAppBar(
