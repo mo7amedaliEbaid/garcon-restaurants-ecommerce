@@ -109,3 +109,24 @@ More ScreenShots [Here](https://github.com/mo7amedaliEbaid/garcon/blob/6d3d4b77f
   <img src="https://github.com/mo7amedaliEbaid/garcon/blob/1b4bdbd9767eb21b90a4830b90146afa756fe6d8/screenshots/cart.jpg" width="180" alt="cart"/>
   <img src="https://github.com/mo7amedaliEbaid/garcon/blob/1b4bdbd9767eb21b90a4830b90146afa756fe6d8/screenshots/pickup_order_checkout.jpg" width="180" alt="pickOrder"/>
 </p>
+
+## Demos
+
+
+https://github.com/user-attachments/assets/a0d9afb7-9918-4dd6-b2b3-eb22ab82856d
+
+
+
+
+https://github.com/user-attachments/assets/291582c1-c7bc-4b17-998d-600f28cc980f
+
+
+
+
+https://github.com/user-attachments/assets/913288aa-1a49-44dc-8f9a-bb64d7dc09cf
+
+
+
+
+https://github.com/user-attachments/assets/c5604b7c-8de6-4c92-9db5-3074dc14b617
+
