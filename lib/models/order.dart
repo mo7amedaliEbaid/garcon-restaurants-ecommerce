@@ -6,36 +6,36 @@ class PickupsOrder extends Equatable {
   final String name;
   final String branch;
 
-  // final String date;
+  final String date;
   final String time;
 
-//  final String personsNumber;
+  final String itemsNumber;
   final String userId;
   final String restaurant;
 
-  // final String amount;
+   final String amount;
 
   const PickupsOrder({
     required this.time,
-    //   required this.personsNumber,
+    required this.itemsNumber,
     required this.userId,
     required this.name,
     required this.branch,
-    // required this.date,
+    required this.date,
     required this.restaurant,
-    //  required this.amount,
+      required this.amount,
   });
 
   @override
   List<Object?> get props => [
         name,
         branch,
-        // date,
+        date,
         time,
-        //personsNumber,
+        itemsNumber,
         userId,
         restaurant,
-        //amount,
+        amount,
       ];
 
   factory PickupsOrder.fromSnapshot(DocumentSnapshot snapshot) {
@@ -43,10 +43,10 @@ class PickupsOrder extends Equatable {
     return PickupsOrder(
       name: data['name'],
       branch: data['branch'],
-      //date: data['date'],
+      date: data['date'],
       time: data['time'],
-      //amount: data['amount'],
-      //personsNumber: data['personsNumber'],
+      amount: data['amount'],
+      itemsNumber: data['itemsNumber'],
       userId: data['userId'],
       restaurant: data['restaurant'],
     );
@@ -56,11 +56,11 @@ class PickupsOrder extends Equatable {
     return {
       'name': name,
       'branch': branch,
-      //'date': date,
-      //'personsNumber': personsNumber,
+      'date': date,
+      'itemsNumber': itemsNumber,
       'time': time,
       'restaurant': restaurant,
-      //'amount': amount,
+      'amount': amount,
       'userId': FirebaseAuth.instance.currentUser!.uid,
     };
   }

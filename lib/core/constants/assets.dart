@@ -33,6 +33,8 @@ sealed class AppAssets {
   static const String twitter = "assets/svg/twitter.svg";
   static const String snap = "assets/svg/snap.svg";
   static const String instagram = "assets/svg/insta.svg";
+  static const String emptyCart = "assets/svg/empty_cart.svg";
+  static const String emptyBooking = "assets/svg/empty_booking.svg";
 
   static const List<String> restaurantTaps = [
     book,

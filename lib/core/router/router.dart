@@ -43,7 +43,12 @@ sealed class AppRouter {
       case choose:
         return MaterialPageRoute(builder: (_) => const ChooseScreen());
       case root:
-        return MaterialPageRoute(builder: (_) => const RootScreen());
+        String? fromRoute = routeSettings.arguments as String?;
+        return MaterialPageRoute(
+          builder: (_) => RootScreen(
+            fromRout: fromRoute,
+          ),
+        );
       case home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case restaurant:
@@ -100,11 +105,13 @@ sealed class AppRouter {
             routeSettings.arguments as Map<String, dynamic>;
         final Restaurant restaurant = arguments['restaurant'] as Restaurant;
         final String amount = arguments['amount'] as String;
+        final String itemsNumber = arguments['itemsNumber'] as String;
 
         return MaterialPageRoute(
           builder: (_) => PickupsCheckout(
             restaurant: restaurant,
             amount: amount,
+            itemsNumber: itemsNumber,
           ),
         );
 

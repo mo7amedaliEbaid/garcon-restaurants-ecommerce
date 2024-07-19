@@ -6,8 +6,27 @@ import 'package:garcon/configs/configs.dart';
 import 'package:garcon/core/core.dart';
 import 'package:garcon/presentation/screens.dart';
 
-class RootScreen extends StatelessWidget {
-  const RootScreen({super.key});
+class RootScreen extends StatefulWidget {
+  const RootScreen({
+    super.key,
+    this.fromRout,
+  });
+
+  final String? fromRout;
+
+  @override
+  State<RootScreen> createState() => _RootScreenState();
+}
+
+class _RootScreenState extends State<RootScreen> {
+  @override
+  void initState() {
+    if (widget.fromRout == "pickups") {
+      context.read<NavigationCubit>().updateTab(NavigationTab.reservationTap);
+     // context.read<SelectedTapCubit>().updateIndex(1);
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

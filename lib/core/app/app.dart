@@ -117,7 +117,10 @@ class MyApp extends StatelessWidget {
             create: (context) => GetOrdersCubit(
               ordersRepository: OrdersRepository(),
             ),
-          )
+          ),
+          BlocProvider(
+            create: (context) => SelectedTapCubit(),
+          ),
         ],
         child: MaterialApp(
           title: 'Garcon',

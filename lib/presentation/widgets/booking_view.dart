@@ -6,7 +6,10 @@ import 'package:garcon/models/models.dart';
 import 'package:garcon/presentation/widgets.dart';
 
 class BookingView extends StatefulWidget {
-  const BookingView({super.key, required this.restaurant});
+  const BookingView({
+    super.key,
+    required this.restaurant,
+  });
 
   final Restaurant restaurant;
 
@@ -227,17 +230,18 @@ class _BookingViewState extends State<BookingView> {
             textStyle: AppText.h3b!.copyWith(color: Colors.white),
             onPressed: () {
               Reservation reservation = Reservation(
-                  time: selectedTime.format(context).toString(),
-                  personsNumber: numberOfPersons.toString(),
-                  userId: FirebaseAuth.instance.currentUser!.uid,
-                  name: _nameController.text,
-                  branch: dropDownValue.toString(),
-                  restaurant: widget.restaurant.name,
-                  amount: widget.restaurant.reservation,
-                  date: selectedDate.toString().substring(0, 10));
+                time: selectedTime.format(context).toString(),
+                personsNumber: numberOfPersons.toString(),
+                userId: FirebaseAuth.instance.currentUser!.uid,
+                name: _nameController.text,
+                branch: dropDownValue.toString(),
+                restaurant: widget.restaurant.name,
+                amount: widget.restaurant.reservation,
+                date: selectedDate.toString().substring(0, 10),
+              );
 
-              Navigator.of(context)
-                  .pushNamed(AppRouter.reservationCheckout, arguments: reservation);
+              Navigator.of(context).pushNamed(AppRouter.reservationCheckout,
+                  arguments: reservation);
             })
       ],
     );

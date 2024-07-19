@@ -8,7 +8,10 @@ import 'package:garcon/models/restaurant.dart';
 import 'package:garcon/presentation/widgets.dart';
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({super.key, required this.restaurant});
+  const CartScreen({
+    super.key,
+    required this.restaurant,
+  });
 
   final Restaurant restaurant;
 
@@ -86,7 +89,10 @@ class _CartScreenState extends State<CartScreen> {
                     ],
                   );
                 } else if (state is CartLoaded && state.pickUps.isEmpty) {
-                  return const Text("empty");
+                  return emptyScreen(
+                    text: "No Items in the Cart",
+                    svg: AppAssets.emptyCart,
+                  );
                 } else {
                   return const Text("error");
                 }
@@ -127,7 +133,8 @@ class _CartScreenState extends State<CartScreen> {
                               AppRouter.pickupsCheckout,
                               arguments: {
                                 'restaurant': widget.restaurant,
-                                'amount': totalPrice.toString()
+                                'amount': totalPrice.toString(),
+                                'itemsNumber': state.pickUps.length.toString(),
                               },
                             );
                           }),

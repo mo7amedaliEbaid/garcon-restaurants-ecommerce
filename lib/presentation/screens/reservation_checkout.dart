@@ -7,7 +7,10 @@ import 'package:garcon/presentation/widgets.dart';
 import '../../application/application.dart';
 
 class ReservationCheckoutScreen extends StatelessWidget {
-  const ReservationCheckoutScreen({super.key, required this.reservation});
+  const ReservationCheckoutScreen({
+    super.key,
+    required this.reservation,
+  });
 
   final Reservation reservation;
 

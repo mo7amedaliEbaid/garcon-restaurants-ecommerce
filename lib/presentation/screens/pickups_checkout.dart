@@ -1,4 +1,3 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,10 +12,12 @@ class PickupsCheckout extends StatefulWidget {
     super.key,
     required this.restaurant,
     required this.amount,
+    required this.itemsNumber,
   });
 
   final Restaurant restaurant;
   final String amount;
+  final String itemsNumber;
 
   @override
   State<PickupsCheckout> createState() => _PickupsCheckoutState();
@@ -55,31 +56,40 @@ class _PickupsCheckoutState extends State<PickupsCheckout> {
 
   @override
   Widget build(BuildContext context) {
+    pay() {
+      context
+          .read<PlaceOrderCubit>()
+          .placeOrder(
+            PickupsOrder(
+              time: selectedTime.format(context).toString(),
+              userId: FirebaseAuth.instance.currentUser?.uid ?? "",
+              name: _nameController.text.trim().toString(),
+              branch: dropDownValue,
+              restaurant: widget.restaurant.name,
+              date: DateTime.now().toString().substring(0, 10),
+              itemsNumber: widget.itemsNumber,
+              amount: widget.amount,
+            ),
+          )
+          .then((value) => context
+              .read<CartCubit>()
+              .removeCart(FirebaseAuth.instance.currentUser?.uid ?? ""))
+          .then(
+        (value) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            AppRouter.root,
+            arguments: "pickups",
+            (route) => false,
+          );
+        },
+      );
+    }
+
     return BlocListener<PaymentCubit, PaymentState>(
       listener: (context, state) {
         if (state is PaymentSuccess) {
-          context
-              .read<PlaceOrderCubit>()
-              .placeOrder(
-                PickupsOrder(
-                  time: selectedTime.toString(),
-                  userId: FirebaseAuth.instance.currentUser?.uid ?? "",
-                  name: _nameController.text.trim().toString(),
-                  branch: dropDownValue,
-                  restaurant: widget.restaurant.name,
-                ),
-              )
-              .then((value) => context
-                  .read<CartCubit>()
-                  .removeCart(FirebaseAuth.instance.currentUser?.uid ?? ""))
-              .then(
-            (value) {
-              Navigator.of(context).popAndPushNamed(AppRouter.root).then(
-                  (value) => context
-                      .read<NavigationCubit>()
-                      .updateTab(NavigationTab.reservationTap));
-            },
-          );
+          pay();
+         // context.read<SelectedTapCubit>().updateIndex(1);
         }
       },
       child: Scaffold(
@@ -229,7 +239,10 @@ class _PickupsCheckoutState extends State<PickupsCheckout> {
                       text: "Pay On Pickup",
                       textStyle:
                           AppText.b1b!.copyWith(color: AppColors.darkRed),
-                      onPressed: () {})
+                      onPressed: () {
+                        pay();
+                       // context.read<SelectedTapCubit>().updateIndex(1);
+                      })
                 ],
               ),
               Space.yf()
