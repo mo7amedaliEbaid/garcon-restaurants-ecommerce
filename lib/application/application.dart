@@ -19,3 +19,4 @@ export 'cubits/navigation_cubit/navigation_cubit.dart';
 export 'cubits/cart/cart_cubit.dart';
 export 'cubits/place_order/place_order_cubit.dart';
 export 'cubits/payment/payment_cubit.dart';
+export 'cubits/get_orders/get_orders_cubit.dart';
