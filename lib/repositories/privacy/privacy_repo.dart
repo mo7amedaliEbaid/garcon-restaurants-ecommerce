@@ -1,18 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:garcon/models/models.dart';
-import 'package:garcon/repositories/terms/base_terms_repo.dart';
+import 'package:garcon/models/info.dart';
+import 'package:garcon/repositories/privacy/base_privacy_repo.dart';
 
-class TermsRepository extends BaseTermsRepository {
+class PrivacyRepository extends BasePrivacyRepository {
   final FirebaseFirestore _firebaseFirestore;
 
-  TermsRepository({FirebaseFirestore? firebaseFirestore})
+  PrivacyRepository({FirebaseFirestore? firebaseFirestore})
       : _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
   @override
-  Stream<Info> getTerms() {
+  Stream<Info> getPrivacy() {
     return _firebaseFirestore
         .collection("info")
-        .doc("terms")
+        .doc("privacy")
         .snapshots()
         .map((snap) => Info.fromSnapShot(snap));
   }

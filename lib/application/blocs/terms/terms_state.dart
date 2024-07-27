@@ -12,7 +12,7 @@ class TermsInitial extends TermsState {}
 class TermsLoading extends TermsState {}
 
 class TermsLoaded extends TermsState {
-  final Terms terms;
+  final Info terms;
 
   const TermsLoaded(this.terms);
 

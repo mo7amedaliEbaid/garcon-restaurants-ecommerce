@@ -1,5 +1,5 @@
 import '../../models/models.dart';
 
 abstract class BaseTermsRepository{
-  Stream<Terms> getTerms();
+  Stream<Info> getTerms();
 }

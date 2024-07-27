@@ -5,4 +5,4 @@ export 'pickup.dart';
 export 'reservation.dart';
 export 'about_us.dart';
 export 'order.dart';
-export 'terms.dart';
+export 'info.dart';

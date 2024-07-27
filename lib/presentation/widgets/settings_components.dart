@@ -52,9 +52,13 @@ Widget settingsItem(
     ],
   );
 }
-Widget verseText({required String text}) {
+
+Widget verseText({
+  required String text,
+  bool withPadding = true,
+}) {
   return Padding(
-    padding: Space.h1!,
+    padding: withPadding ? Space.h1! : EdgeInsets.zero,
     child: Text(
       text,
       style: AppText.b2!.copyWith(

@@ -121,6 +121,16 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => SelectedTapCubit(),
           ),
+          BlocProvider(
+            create: (context) => TermsBloc(
+              TermsRepository(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => PrivacyBloc(
+              PrivacyRepository(),
+            ),
+          ),
         ],
         child: MaterialApp(
           title: 'Garcon',

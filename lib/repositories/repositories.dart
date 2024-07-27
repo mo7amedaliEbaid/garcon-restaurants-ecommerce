@@ -7,3 +7,4 @@ export 'about/about_repo.dart';
 export 'cart/cart_repo.dart';
 export 'orders/orders_repo.dart';
 export 'terms/terms_repo.dart';
+export 'privacy/privacy_repo.dart';
