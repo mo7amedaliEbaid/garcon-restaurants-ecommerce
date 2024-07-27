@@ -6,6 +6,7 @@ export 'blocs/sign_up/sign_up_bloc.dart';
 export 'blocs/restaurants/restaurants_bloc.dart';
 export 'blocs/tags/tags_bloc.dart';
 export 'blocs/about_us/about_us_bloc.dart';
+export 'blocs/terms/terms_bloc.dart';
 
 //cubits
 export 'cubits/connectivity/connectivity_cubit.dart';
