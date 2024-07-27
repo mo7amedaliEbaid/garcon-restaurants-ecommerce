@@ -55,12 +55,26 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
       body: BlocListener<ContactUsBloc, ContactUsState>(
         listener: (context, state) {
           if (state is ContactUsSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Message sent successfully')),
+            customDialog(
+              context,
+              text: "Message Send Successfully",
+              onPressed: () {
+                _mobileController.clear();
+                _emailController.clear();
+                _nameController.clear();
+                _messageController.clear();
+                Navigator.pop(context);
+              },
+              buttonText: "Dismiss",
             );
           } else if (state is ContactUsFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Failed to send message: ${state.error}')),
+            customDialog(
+              context,
+              text: state.error.toString(),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              buttonText: "Try Again",
             );
           }
         },
@@ -134,14 +148,21 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                         ),
                       ),
                       Space.yf(2),
-                      customElevatedButton(
-                        width: double.infinity,
-                        height: AppDimensions.normalize(21),
-                        color: AppColors.deepRed,
-                        borderRadius: AppDimensions.normalize(5),
-                        text: "Send Message",
-                        textStyle: AppText.h2b!.copyWith(color: Colors.white),
-                        onPressed: _sendMessage,
+                      BlocBuilder<ContactUsBloc, ContactUsState>(
+                        builder: (context, state) {
+                          return customElevatedButton(
+                            width: double.infinity,
+                            height: AppDimensions.normalize(21),
+                            color: AppColors.deepRed,
+                            borderRadius: AppDimensions.normalize(5),
+                            text: state is ContactUsLoading
+                                ? "Wait"
+                                : "Send Message",
+                            textStyle:
+                                AppText.h2b!.copyWith(color: Colors.white),
+                            onPressed: _sendMessage,
+                          );
+                        },
                       )
                     ],
                   ),
