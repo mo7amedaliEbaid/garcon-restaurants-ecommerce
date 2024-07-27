@@ -109,7 +109,7 @@ More ScreenShots [Here](https://github.com/mo7amedaliEbaid/garcon/blob/6d3d4b77f
   <img src="https://github.com/mo7amedaliEbaid/garcon/blob/1b4bdbd9767eb21b90a4830b90146afa756fe6d8/screenshots/cart.jpg" width="180" alt="cart"/>
   <img src="https://github.com/mo7amedaliEbaid/garcon/blob/6d973f7552effbb4b41cc1beafedc35f1a8556d9/screenshots/contact_us.jpg" width="180" alt="contact_us"/>
   <img src="https://github.com/mo7amedaliEbaid/garcon/blob/1b4bdbd9767eb21b90a4830b90146afa756fe6d8/screenshots/pickup_order_checkout.jpg" width="180" alt="pickOrder"/>
-  <img src="https://github.com/mo7amedaliEbaid/garcon/blob/1b4bdbd9767eb21b90a4830b90146afa756fe6d8/screenshots/pickup_order_checkout.jpg" width="180" alt="pickOrder"/>
+  <img src="https://github.com/mo7amedaliEbaid/garcon/blob/ea05942c474bff5df52332ba6fa1bb57378773ab/screenshots/privacy.jpg" width="180" alt="pickOrder"/>
 </p>
 
 ## Demos
