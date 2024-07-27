@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:garcon/models/info.dart';
-import 'package:garcon/repositories/privacy/base_privacy_repo.dart';
+part 'base_privacy_repo.dart';
 
 class PrivacyRepository extends BasePrivacyRepository {
   final FirebaseFirestore _firebaseFirestore;

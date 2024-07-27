@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:garcon/repositories/privacy/base_privacy_repo.dart';
+import 'package:garcon/repositories/repositories.dart';
 
 import '../../../models/info.dart';
 

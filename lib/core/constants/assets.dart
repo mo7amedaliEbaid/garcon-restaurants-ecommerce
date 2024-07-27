@@ -35,6 +35,7 @@ sealed class AppAssets {
   static const String instagram = "assets/svg/insta.svg";
   static const String emptyCart = "assets/svg/empty_cart.svg";
   static const String emptyBooking = "assets/svg/empty_booking.svg";
+  static const String whats = "assets/svg/whats.svg";
 
   static const List<String> restaurantTaps = [
     book,

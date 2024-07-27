@@ -6,3 +6,4 @@ export 'reservation.dart';
 export 'about_us.dart';
 export 'order.dart';
 export 'info.dart';
+export 'contact_us.dart';

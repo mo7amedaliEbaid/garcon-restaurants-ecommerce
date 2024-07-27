@@ -131,6 +131,11 @@ class MyApp extends StatelessWidget {
               PrivacyRepository(),
             ),
           ),
+          BlocProvider(
+            create: (context) => ContactUsBloc(
+              ContactUsRepository(),
+            ),
+          ),
         ],
         child: MaterialApp(
           title: 'Garcon',
@@ -138,10 +143,11 @@ class MyApp extends StatelessWidget {
           onGenerateRoute: AppRouter.onGenerateRoute,
           initialRoute: AppRouter.splash,
           theme: ThemeData(
-              fontFamily: AppStrings.fontFamily,
-              dialogTheme: const DialogTheme(
-                backgroundColor: Colors.white,
-              )),
+            fontFamily: AppStrings.fontFamily,
+            dialogTheme: const DialogTheme(
+              backgroundColor: Colors.white,
+            ),
+          ),
         ),
       ),
     );

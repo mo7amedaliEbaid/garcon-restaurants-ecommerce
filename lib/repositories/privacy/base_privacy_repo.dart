@@ -1,5 +1,4 @@
-import '../../models/models.dart';
-
+part of 'privacy_repo.dart';
 abstract class BasePrivacyRepository{
   Stream<Info> getPrivacy();
 }

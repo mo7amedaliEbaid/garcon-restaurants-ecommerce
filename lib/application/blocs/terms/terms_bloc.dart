@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:garcon/models/models.dart';
-import 'package:garcon/repositories/terms/base_terms_repo.dart';
+import 'package:garcon/repositories/repositories.dart';
 import 'package:meta/meta.dart';
 
 part 'terms_event.dart';

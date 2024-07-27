@@ -3,15 +3,21 @@ import 'package:garcon/core/core.dart';
 
 import '../../configs/configs.dart';
 
-Widget customTextField(
-    {required String labelText,
-    Widget? prefix,
-    String? Function(String?)? validator,
-    void Function(String)? onChanged,
-    required TextEditingController controller}) {
+Widget customTextField({
+  required String labelText,
+  Widget? prefix,
+  String? Function(String?)? validator,
+  void Function(String)? onChanged,
+  required TextEditingController controller,
+  isExpanded = false,
+}) {
   return TextFormField(
     autovalidateMode: AutovalidateMode.onUserInteraction,
     validator: validator,
+    expands: isExpanded,
+
+    maxLines: isExpanded ? null : 2,
+    minLines: isExpanded ? null : 1,
     controller: controller,
     onChanged: onChanged,
     style: AppText.b2b,

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:garcon/models/models.dart';
-import 'package:garcon/repositories/terms/base_terms_repo.dart';
-
+part  'base_terms_repo.dart';
 class TermsRepository extends BaseTermsRepository {
   final FirebaseFirestore _firebaseFirestore;
 

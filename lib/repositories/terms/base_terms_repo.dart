@@ -1,5 +1,5 @@
-import '../../models/models.dart';
+part of 'terms_repo.dart';
 
-abstract class BaseTermsRepository{
+abstract class BaseTermsRepository {
   Stream<Info> getTerms();
 }
